@@ -14,12 +14,15 @@ class CreateReviewsTable extends Migration
     public function up()
     {
         Schema::create('reviews', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
+            $table->int('movieId')->unique()->unsigned()->notnull()->references('movieId')->on('movies');
+            $table->string('author', 255)->notnull();
+            $table->string('content');
+            $table->int('reviewId')->unique()->unsigned()->notnull()->increments();
+            $table->int('reviewRating')->nullable()->unsigned();
         });
     }
 
-    /**
+    /** 
      * Reverse the migrations.
      *
      * @return void

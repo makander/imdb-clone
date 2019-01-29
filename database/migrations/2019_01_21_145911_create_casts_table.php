@@ -14,8 +14,13 @@ class CreateCastsTable extends Migration
     public function up()
     {
         Schema::create('casts', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
+            $table->increments('castId')->unique()->unsigned()->notnull(); 
+            $table->string('character', 255); 
+            $table->string('gender', 255);
+            $table->int('movieId')->unique()->unsigned()->notnull()->references('movieId')->on('movies');
+            $table->string('name', 255)->notnull();
+            $table->int('order')->unsigned();
+            $table->string('profilePath');
         });
     }
 
