@@ -14,11 +14,11 @@ class CreateReviewsTable extends Migration
     public function up()
     {
         Schema::create('reviews', function (Blueprint $table) {
-            $table->int('movieId')->unique()->unsigned()->notnull()->references('movieId')->on('movies');
+            $table->integer('movieId')->unique()->unsigned()->notnull()->references('movieId')->on('movies');
             $table->string('author', 255)->notnull();
             $table->string('content');
-            $table->int('reviewId')->unique()->unsigned()->notnull()->increments();
-            $table->int('reviewRating')->nullable()->unsigned();
+            $table->integer('reviewId')->unique()->unsigned()->notnull()->increments();
+            $table->integer('reviewRating')->nullable()->unsigned();
         });
     }
 
