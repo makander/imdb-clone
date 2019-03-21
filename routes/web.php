@@ -16,3 +16,6 @@ Route::get('/', function () {
 });
 
 Route::get('movies', 'MovieController@index');
+Route::get('series', 'SeriesController@index');
+Route::get('login', '@index');
+Route::get('signup', '@index');

@@ -12,6 +12,7 @@
         <div>
             <h2>Welcome to our imdb clone</h2>
             <p>Here you can se our listed <a href="/movies">movies</a>.</p>
+            <p>Here you can se our listed <a href="/series">series</a>.</p>
         </div>
 
     </body>
