@@ -13,9 +13,13 @@
 
 Route::get('/', function () {
     return view('welcome');
+<<<<<<< HEAD
 });
 
 Route::get('movies', 'MovieController@index');
 Route::get('series', 'SeriesController@index');
 Route::get('login', '@index');
 Route::get('signup', '@index');
+=======
+});
+>>>>>>> guzzle
