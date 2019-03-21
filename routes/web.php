@@ -13,13 +13,17 @@
 
 Route::get('/', function () {
     return view('welcome');
-<<<<<<< HEAD
+
 });
 
 Route::get('movies', 'MovieController@index');
 Route::get('series', 'SeriesController@index');
+
 Route::get('login', '@index');
 Route::get('signup', '@index');
-=======
-});
->>>>>>> guzzle
+
+Route::get('cast', 'CastController@index');
+Route::post('login', '@index');
+Route::post('profile', '@index');
+Route::post('signup', '@index');
+
