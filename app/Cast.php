@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cast extends Model
 {
+    public function movie()
+    {
+        return $this->belongTo('App\Movie');
+    }
     
 
     protected $fillable = [

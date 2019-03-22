@@ -19,6 +19,8 @@ class CreateReviewsTable extends Migration
             $table->string('content');
             $table->int('reviewId')->unique()->unsigned()->notnull()->increments();
             $table->int('reviewRating')->nullable()->unsigned();
+
+            $table->foreign('user_id')->references('userId')->on('users');
         });
     }
 
