@@ -17,9 +17,9 @@ class CreateCastsTable extends Migration
             $table->increments('castId')->unique()->unsigned()->notnull(); 
             $table->string('character', 255); 
             $table->string('gender', 255);
-            $table->int('movieId')->unique()->unsigned()->notnull()->references('movieId')->on('movies');
+            $table->integer('movieId')->unique()->unsigned()->notnull()->references('movieId')->on('movies');
             $table->string('name', 255)->notnull();
-            $table->int('order')->unsigned();
+            $table->integer('order')->unsigned();
             $table->string('profilePath');
         });
     }

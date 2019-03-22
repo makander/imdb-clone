@@ -17,7 +17,7 @@ class Movie extends Model
     }
 
     protected $fillable = [
-    "movieId",
+    "movie_id",
     "voteCount",
     "voteAverage",
     "title",
