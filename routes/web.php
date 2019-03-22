@@ -13,4 +13,17 @@
 
 Route::get('/', function () {
     return view('welcome');
+
 });
+
+Route::get('movies', 'MovieController@index');
+Route::get('series', 'SeriesController@index');
+Route::get('cast', 'CastController@index');
+
+Route::get('login', '@index');
+Route::get('signup', '@index');
+
+Route::post('login', '@index');
+Route::post('profile', '@index');
+Route::post('signup', '@index');
+

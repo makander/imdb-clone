@@ -6,11 +6,23 @@ use Illuminate\Database\Eloquent\Model;
 
 class Review extends Model
 {
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+
+    // public function movie()
+    // {
+    //     return $this->belongsTo('App\Movie');
+    // }
+
+
     protected $fillable = [
-        'movieId',
+        'movie_id',
         'author',
         'content',
-        'reviewId',
-        'reviewRating'
+        'review_id',
+        'review_rating'
     ];
 }
