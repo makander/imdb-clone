@@ -14,7 +14,7 @@ class CreateMoviesTable extends Migration
     public function up()
     {
         Schema::create('movies', function (Blueprint $table) {
-            $table->integer("movie_id")->unique()->unsigned()->notnull();
+            $table->integer("id")->unique()->unsigned()->notnull();
             $table->integer("voteCount");
             $table->decimal("voteAverage")->unsigned()->notnull();
             $table->string("movie_title");
