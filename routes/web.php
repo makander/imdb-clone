@@ -27,3 +27,7 @@ Route::post('login', '@index');
 Route::post('profile', '@index');
 Route::post('signup', '@index');
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
