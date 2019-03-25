@@ -14,8 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/getmovies', 'MovieController@searchMovies');
-Route::get('/movies/index', 'MovieController@index');
+Route::get('/movies', 'MovieController@index');
+Route::get('/movies/{id}', 'MovieController@getSingleMovie');
+Route::get('/movies/search/{query}', 'MovieController@searchMovies');
 Route::get('/tv/index', 'SeriesController@index');
 
 Route::get('movies', 'MovieController@index');

@@ -7,6 +7,7 @@
     <title>Movies</title>
 </head>
 <body>
+    <input type="text" id="searchField" /> <button onclick="searchMovie()">Search</button>
   <ul style="list-style-type:noné">
     @foreach ($movies as $match)
     	<li>
@@ -19,3 +20,11 @@
   </ul>
 </body>
 </html>
+<script>
+
+function searchMovie() {
+    let query = document.querySelector('#searchField').value;
+    window.location.replace(`http://dimb.test/movies/search/${query}`);
+}
+
+</script>
