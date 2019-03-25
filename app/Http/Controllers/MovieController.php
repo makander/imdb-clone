@@ -9,32 +9,52 @@ use GuzzleHttp\Client;
 
 class MovieController extends Controller
 {
-<<<<<<< HEAD
-    public function index()
-    {
-        $movies = ["Titanic", "Lion King", "X-men"];
+    // $baseImgUrl = 'https://image.tmdb.org/t/p/w300_and_h450_bestv2/nVN7Dt0Xr78gnJepRsRLaLYklbY.jpg';
+    public function index() 
+    { 
+        $apiKey = "f9948c89015a41a0a70d75d459c92e4f";
+        $query = "batman";
+        $baseUrl =  "https://api.themoviedb.org/3/movie/popular?api_key=$apiKey&language=en-US&page=1";
+        $client = new Client();
+        $result = $client->get("$baseUrl");
+        $movies = json_decode($result->getBody())->results; //This should be halfed when on mobile so users can load faster
 
-        return view('movies', compact('movies'));
-=======
-    public function searchMovies($query)
+        
+        return view('movies', [
+            'movies' => $movies
+        ]);
+
+    }
+
+   
+
+
+    
+    public function searchMovies()
     {
         $apiKey = "f9948c89015a41a0a70d75d459c92e4f";
-        $baseImgUrl = 'https://image.tmdb.org/t/p/w300_and_h450_bestv2/nVN7Dt0Xr78gnJepRsRLaLYklbY.jpg';
+        $query = "batman";
         $baseUrl =  "http://api.themoviedb.org/3/search/movie?api_key=$apiKey&query=$query";
         $client = new Client();
         $result = $client->get("$baseUrl");
-        $response = json_decode($result->getBody());
-        return $response;
+        $response = json_decode($result->getBody())->results;     
     }
     public function searchTvShows($query)
     {
         $apiKey = "f9948c89015a41a0a70d75d459c92e4f";
-        $baseImgUrl = 'https://image.tmdb.org/t/p/w300_and_h450_bestv2/nVN7Dt0Xr78gnJepRsRLaLYklbY.jpg';
+       
         $baseUrl = "https://api.themoviedb.org/3/search/tv?api_key=$apiKey&language=en-US&page&query=$query";
         $client = new Client();
         $result = $client->get("$baseUrl");
         $response = json_decode($result->getBody());
         return $response;
->>>>>>> guzzle
     }
+
+    
+
+
+
+
+
+
 }
