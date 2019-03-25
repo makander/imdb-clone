@@ -13,16 +13,15 @@
 
 Route::get('/', function () {
     return view('welcome');
-<<<<<<< HEAD
 });
 Route::get('/getmovies', 'MovieController@searchMovies');
 Route::get('/movies/index', 'MovieController@index');
 Route::get('/tv/index', 'SeriesController@index');
-
+ 
 Route::get('movies', 'MovieController@index');
 Route::get('series', 'SeriesController@index');
-Route::get('login', '@index');
-Route::get('signup', '@index');
-=======
-});
->>>>>>> guzzle
+Route::get('cast', 'CastController@index');
+
+Route::post('login', '@index');
+Route::post('profile', '@index');
+Route::post('signup', '@index');
