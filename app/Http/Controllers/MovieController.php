@@ -17,8 +17,13 @@ class MovieController extends Controller
         $baseUrl =  "https://api.themoviedb.org/3/movie/popular?api_key=$apiKey&language=en-US&page=1";
         $client = new Client();
         $result = $client->get("$baseUrl");
-        $response = json_decode($result->getBody())->results; //This should be halfed when on mobile so users can load faster
-        var_dump($response);
+        $movies = json_decode($result->getBody())->results; //This should be halfed when on mobile so users can load faster
+
+        
+        return view('movies', [
+            'movies' => $movies
+        ]);
+
     }
 
    
