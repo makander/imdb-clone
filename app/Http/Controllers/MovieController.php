@@ -50,12 +50,14 @@ class MovieController extends Controller
     {
         $query = $request['query'];
         $apiKey = "f9948c89015a41a0a70d75d459c92e4f";
-        $query = "batman";
         $baseUrl =  "http://api.themoviedb.org/3/search/movie?api_key=$apiKey&query=$query";
         $client = new Client();
         $result = $client->get("$baseUrl");
         $response = json_decode($result->getBody())->results;
-        var_dump($response);
+        
+        return view('movies', [
+            'movies' => $response
+        ]);
     }
 
     public function searchTvShows($query)
