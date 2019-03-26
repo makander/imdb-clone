@@ -20,5 +20,12 @@ Route::get('/tv/index', 'SeriesController@index');
 
 Route::get('movies', 'MovieController@index');
 Route::get('series', 'SeriesController@index');
-Route::get('login', '@index');
-Route::get('signup', '@index');
+
+Route::post('login', '@index');
+Route::post('profile', '@index');
+Route::post('signup', '@index');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+

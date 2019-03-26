@@ -12,7 +12,7 @@
     @foreach ($movies as $match)
     	<li>
 				<div style="margin:10px">
-          <img src="http://image.tmdb.org/t/p/w45//{{$match->poster_path}}">
+          <img src="http://image.tmdb.org/t/p/w180//{{$match->poster_path}}">
       	  <a href="/movies/{{ $match->id}}" style="text-decoration:none;color:black"><b>{{ $match->title }}</b> ({{ $match->release_date }})</a>
       	<div> 
       </li>

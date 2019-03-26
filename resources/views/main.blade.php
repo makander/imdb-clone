@@ -1,23 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
+@section('content')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <title>Movies</title>
-</head>
-
-<body>
     <div class="main">
-        <nav class="navbar navbar-dark bg-dark justify-content-between">
-            <a class="navbar-brand text-light">Navbar</a>
-            <form class="form-inline">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
-        </nav>
         <div class="jumbotron">
             <div class="container bg-light rounded p-5">
                 <p>
@@ -45,9 +29,6 @@
     </div>
 </body>
 </html>
-<script>
-    function searchMovie() {
-        let query = document.querySelector('#searchField').value;
-        window.location.replace(`http://dimb.test/movies/search/${query}`);
-    }
-</script> 
+
+@endsection
+
