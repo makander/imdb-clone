@@ -20,24 +20,22 @@ Badumdish
     <li>
 
         <a href="/movielist/{{$list->id}}"> {{$list->list_name}}</a>
-        <form method="POST" action="{{ route('lists.destroy', [$list->id])}}"> {{ csrf_field() }}
+        <form method="POST" action="{{ route('lists.destroy', [$list->id])}}">
+            {{ csrf_field() }}
             {{ method_field('DELETE') }} <button type="submit">
                 Delete</button>
         </form>
 
-        <form method="GET" action="{{ route('lists.update', [$list->id])}}"> {{ csrf_field() }}
-
+        <form method="GET" action="{{ route('lists.update', [$list->id])}}">
+            {{ csrf_field() }}
             {{ method_field('PUT') }}
-            <input type="text" name="updated_name">
-            <button type="submit">Update</button>
+            <input type="text" name="updated_name" placeholder="edit name">
+            <button type="submit">Edit</button>
         </form>
-
 
     </li>
 
     @endforeach
 </ul>
-<!-- {{ auth()->user() }} -->
-{{$lists}}
 
 @endsection
