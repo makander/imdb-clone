@@ -14,8 +14,6 @@
             <p>{{ $serie }}</p>
 
             @endforeach
-
-
     </div>
 </body>
 </html>

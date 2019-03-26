@@ -20,7 +20,7 @@ class MovieController extends Controller
         $movies = json_decode($result->getBody())->results; //This should be halfed when on mobile so users can load faster
 
 
-        return view('movies', [
+        return view('main', [
             'movies' => $movies
         ]);
     }
