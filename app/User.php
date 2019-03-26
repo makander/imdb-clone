@@ -15,9 +15,9 @@ class User extends Authenticatable
         return $this->hasMany('App\Review');
     }
     
-    public function list()
+    public function lists()
     {
-        return $this->hasMany('App\List');
+        return $this->hasMany('App\Lists');
     }
 
     /**

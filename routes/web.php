@@ -16,8 +16,11 @@ Route::get('/', function () {
 });
 Route::get('/getmovies', 'MovieController@searchMovies');
 Route::get('/movies/index', 'MovieController@index');
-Route::get('/tv/index', 'SeriesController@index');
- 
+Route::get('/lists', 'ListsController@show')->name('lists');
+
+
+
+
 Route::get('movies', 'MovieController@index');
 Route::get('series', 'SeriesController@index');
 Route::get('cast', 'CastController@index');
@@ -25,7 +28,6 @@ Route::get('cast', 'CastController@index');
 Route::post('login', '@index');
 Route::post('profile', '@index');
 Route::post('signup', '@index');
-
 
 Auth::routes();
 
