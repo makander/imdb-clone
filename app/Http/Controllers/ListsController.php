@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Lists;
+use App\User;
 
 class ListsController extends Controller
 {
@@ -15,12 +16,14 @@ class ListsController extends Controller
 
     public function show()
     {
-        $id = auth()->user()->id;
-        $lists = \App\Lists::all();
+        $userId = auth()->user()->id;
+        $lists = Lists::where("list_owner", "=", $userId)->get();
         return view('lists')->with('lists', $lists);
     }
 
-
+    public function store()
+    {
+    }
 
     /*     public function index()
         {
