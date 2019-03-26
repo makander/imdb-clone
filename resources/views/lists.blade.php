@@ -4,15 +4,17 @@
 this is the actual list view.
 Badumdish
 
-<form method="POST" action="">
+<form method="POST" action="/lists">
     @csrf
-    <input type="text" placeholder="list name" />
 
-    <button>
+    <input type="text" name="list_name"/>
+    
+    <button type="submit">
         Create new list
     </button>
+</form>
 
-</form> <!-- {{ auth()->user() }} -->
+<!-- {{ auth()->user() }} -->
 {{$lists}}
 
 @endsection

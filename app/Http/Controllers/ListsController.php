@@ -21,8 +21,12 @@ class ListsController extends Controller
         return view('lists')->with('lists', $lists);
     }
 
-    public function store()
+    public function store(Request $request)
     {
+        $data['list_name'] = $request->input('list_name');
+        $data['list_owner'] = auth()->user()->id;
+        Lists::create($data);
+        return redirect()->action('ListsController@show');
     }
 
     /*     public function index()

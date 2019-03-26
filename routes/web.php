@@ -17,9 +17,7 @@ Route::get('/', function () {
 Route::get('/getmovies', 'MovieController@searchMovies');
 Route::get('/movies/index', 'MovieController@index');
 Route::get('/lists', 'ListsController@show')->name('lists');
-
-
-
+Route::post('/lists', 'ListsController@store');
 
 Route::get('movies', 'MovieController@index');
 Route::get('series', 'SeriesController@index');
