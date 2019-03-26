@@ -18,6 +18,8 @@ Route::get('/getmovies', 'MovieController@searchMovies');
 Route::get('/movies/index', 'MovieController@index');
 Route::get('/lists', 'ListsController@show')->name('lists');
 Route::post('/lists', 'ListsController@store');
+Route::delete('/lists/{id}', 'ListsController@destroy')->name('lists.destroy');
+Route::get('/lists/{id}', 'ListsController@update')->name('lists.update');
 
 Route::get('movies', 'MovieController@index');
 Route::get('series', 'SeriesController@index');

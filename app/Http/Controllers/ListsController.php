@@ -29,8 +29,21 @@ class ListsController extends Controller
         return redirect()->action('ListsController@show');
     }
 
-    /*     public function index()
-        {
-            return view('lists');
-        } */
+    public function destroy($id)
+    {
+        $listToRemove = Lists::find($id);
+        $listToRemove->delete();
+
+        return redirect()->action('ListsController@show');
+    }
+
+    
+    public function update(Request $request, $id)
+    {
+        /*       $List = Lists::find($id);
+              $List->'list_name' = $request->input('updated_name');
+              $List->save();
+              var_dump($List);
+              //return redirect()->action('ListsController@show'); */
+    }
 }
