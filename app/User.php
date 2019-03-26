@@ -10,6 +10,16 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    public function reviews()
+    {
+        return $this->hasMany('App\Review');
+    }
+    
+    public function lists()
+    {
+        return $this->hasMany('App\Lists');
+    }
+
     /**
      * The attributes that are mass assignable.
      *
@@ -25,6 +35,6 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'role'
     ];
 }

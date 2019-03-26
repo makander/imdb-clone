@@ -14,11 +14,11 @@ class CreateMoviesTable extends Migration
     public function up()
     {
         Schema::create('movies', function (Blueprint $table) {
-            $table->int("movieId")->unique()->unsigned()->notnull();
-            $table->int("voteCount");
-            $table->dec("voteAverage")->unsigned()->notnull();
-            $table->string("title");
-            $table->dec("popularity");
+            $table->integer("id")->unique()->unsigned()->notnull();
+            $table->integer("voteCount");
+            $table->decimal("voteAverage")->unsigned()->notnull();
+            $table->string("movie_title");
+            $table->decimal("popularity");
             $table->string("posterPath");
             $table->string("originalLanguage");
             $table->string("originalTitle");
@@ -26,7 +26,7 @@ class CreateMoviesTable extends Migration
             $table->string("backdrop_path");
             $table->boolean("pgRating");
             $table->string("overview");
-            $table->DATE("releaseDate");
+            $table->date("releaseDate");
         });
     }
 
