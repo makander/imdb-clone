@@ -21,12 +21,29 @@ class ListsController extends Controller
         return view('lists')->with('lists', $lists);
     }
 
-    public function store()
+    public function store(Request $request)
     {
+        $data['list_name'] = $request->input('list_name');
+        $data['list_owner'] = auth()->user()->id;
+        Lists::create($data);
+        return redirect()->action('ListsController@show');
     }
 
-    /*     public function index()
-        {
-            return view('lists');
-        } */
+    public function destroy($id)
+    {
+        $listToRemove = Lists::find($id);
+        $listToRemove->delete();
+
+        return redirect()->action('ListsController@show');
+    }
+
+    
+    public function update(Request $request, $id)
+    {
+        /*       $List = Lists::find($id);
+              $List->'list_name' = $request->input('updated_name');
+              $List->save();
+              var_dump($List);
+              //return redirect()->action('ListsController@show'); */
+    }
 }

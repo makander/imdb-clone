@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Lists extends Model
 {
+    public $timestamps = false;
+
     public function user()
     {
         return $this->belongsTo('App\User');
@@ -15,4 +17,8 @@ class Lists extends Model
     {
         return $this->hasMany('App\MovieList');
     }
+
+    protected $fillable = [
+        'list_name', 'list_owner'
+    ];
 }
