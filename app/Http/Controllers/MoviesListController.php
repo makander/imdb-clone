@@ -20,4 +20,15 @@ class MoviesListController extends Controller
     {
         
     }
+
+    public function delete(Request $request, $id)
+    {
+        dd($request, $id);
+        $movieToRemove = MovieList::where("movie_id", "=", $movie_id)
+            ->where("id", '=', $id);
+        // $movieToRemove = MovieList::find($movie_id);
+        $movieToRemove->delete();
+
+        return redirect()->action('MoviesListController@show');
+    }
 }
