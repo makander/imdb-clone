@@ -7,16 +7,28 @@
     <p> {{$details->overview}} </p>
 </div>
 
+
+<div>
+    <form method="POST" action="/movies/{{$details->id}}/review" placeholder="Dead Link">
+        @csrf
+        <input type="text" name="content" />
+        <button type="submit">
+            Comment
+        </button>
+    </form>
+</div>
+
+
 <div>
     <form method="POST" action="/lists" placeholder="Dead Link">
         @csrf
-
         <input type="text" name="list_name" />
-
         <button type="submit">
             Add to movie list
         </button>
     </form>
 </div>
+
+{{$reviews}}
 
 @endsection

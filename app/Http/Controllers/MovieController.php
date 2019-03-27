@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
+use App\Review;
 
 class MovieController extends Controller
 {
@@ -42,27 +43,21 @@ class MovieController extends Controller
 
     public function show($id)
     {
-
-
-        //https://api.themoviedb.org/3/movie/{movie_id}/images?api_key=<<api_key>>&language=en-US
-
         $apiKey = "f9948c89015a41a0a70d75d459c92e4f";
         $baseUrl =  "https://api.themoviedb.org/3/movie/$id?api_key=$apiKey&language=en-US";
         $detailClient = new Client();
         $result = $detailClient->get("$baseUrl");
         $details = json_decode($result->getBody());
+       
+        $reviews = Review::where('movie_id', "=", $id)->get();
 
+        // $userId = auth()->user()->id;
+        // $lists = Lists::where("list_owner", "=", $userId)->get();
+        // return view('lists')->with('lists', $lists);
 
-        // $imageUrl = "https://api.themoviedb.org/3/movie/$id/images?api_key=$apiKey&language=en-US";
-        // $imageClient = new Client();
-        // $result = $imageClient->get("$baseUrl");
-        // $images = json_decode($result->getBody());
-
-        
         return view(
             'moviedetails',
-        [ 'details' => $details]
-        //[ 'images' => $images]
+            compact('details', 'reviews')
         );
     }
 }

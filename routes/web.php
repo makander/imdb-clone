@@ -22,7 +22,9 @@ Route::delete('/lists/{id}', 'ListsController@destroy')->name('lists.destroy');
 Route::get('/lists/{id}', 'ListsController@update')->name('lists.update');
 
 Route::get('movies', 'MovieController@index');
-Route::get('movies/{id}', 'MovieController@show')->name('movie.details');
+Route::get('movies/{id}', 'MovieController@show');
+Route::post('movies/{id}/review', 'ReviewController@store');
+
 Route::get('series', 'SeriesController@index');
 Route::get('cast', 'CastController@index');
 
