@@ -17,14 +17,10 @@ class MovieController extends Controller
         $client = new Client();
         $result = $client->get("$baseUrl");
         $movies = json_decode($result->getBody())->results; //This should be halfed when on mobile so users can load faster
-
-        
         return view('movies', [
             'movies' => $movies
         ]);
     }
-
-    
     public function searchMovies()
     {
         $apiKey = "f9948c89015a41a0a70d75d459c92e4f";
@@ -37,11 +33,36 @@ class MovieController extends Controller
     public function searchTvShows($query)
     {
         $apiKey = "f9948c89015a41a0a70d75d459c92e4f";
-       
         $baseUrl = "https://api.themoviedb.org/3/search/tv?api_key=$apiKey&language=en-US&page&query=$query";
         $client = new Client();
         $result = $client->get("$baseUrl");
         $response = json_decode($result->getBody());
         return $response;
+    }
+
+    public function show($id)
+    {
+
+
+        //https://api.themoviedb.org/3/movie/{movie_id}/images?api_key=<<api_key>>&language=en-US
+
+        $apiKey = "f9948c89015a41a0a70d75d459c92e4f";
+        $baseUrl =  "https://api.themoviedb.org/3/movie/$id?api_key=$apiKey&language=en-US";
+        $detailClient = new Client();
+        $result = $detailClient->get("$baseUrl");
+        $details = json_decode($result->getBody());
+
+
+        // $imageUrl = "https://api.themoviedb.org/3/movie/$id/images?api_key=$apiKey&language=en-US";
+        // $imageClient = new Client();
+        // $result = $imageClient->get("$baseUrl");
+        // $images = json_decode($result->getBody());
+
+        
+        return view(
+            'moviedetails',
+        [ 'details' => $details]
+        //[ 'images' => $images]
+        );
     }
 }
