@@ -9,12 +9,15 @@ use App\Lists;
 
 class MoviesListController extends Controller
 {
-    public function show()
+    public function show($id)
     {
-        $table = MovieList::all();
-        var_dump($table);
-        // return view('movielist')->with('movieList', $table);
+        $tables = MovieList::where("id", "=", $id)->get();
+        return view('movielist', ['tables' => $tables]);
 
-        // $movieList = MovieList::where("id", "=", $listId)->get();
+    }
+
+    public function store()
+    {
+        
     }
 }

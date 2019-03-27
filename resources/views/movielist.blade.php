@@ -1,18 +1,12 @@
 @extends('layouts.app')
 @section('content')
 
-this is the actual list view.
-Badumdish
+this is the list of movies in your list
 
-<form method="POST" action="">
-    @csrf
-    <input type="text" placeholder="list name" />
+@foreach ($tables as $table)
 
-    <button>
-        Create new list
-    </button>
+    <li>{{ $table->movie_title }}</li>
 
-</form> <!-- {{ auth()->user() }} -->
-{{$table}}
+@endforeach
 
 @endsection
