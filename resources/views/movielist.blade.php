@@ -4,8 +4,8 @@
 this is the list of movies in your list
 
 @foreach ($tables as $table)
-<a href=""> {{$table->movie_title}}</a>
-        <form method="POST" action="{{ route('movielist.delete', [$table->movie_id, $table->id])}}"> {{ csrf_field() }}
+<a href="{{$table->movie_id}}"> {{$table->movie_title}}</a>
+        <form method="POST" action="{{ route('movielist.delete', [$table->id])}}"> {{ csrf_field() }}
             {{ method_field('DELETE') }} <button type="submit">
                 Delete</button>
         </form>

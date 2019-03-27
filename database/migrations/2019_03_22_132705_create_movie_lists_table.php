@@ -13,8 +13,9 @@ class CreateMovieListsTable extends Migration
      */
     public function up()
     {
-        Schema::create('movie_list', function (Blueprint $table) {
-            $table->integer('id')->references('id')->on('lists');
+        Schema::create('movie_lists', function (Blueprint $table) {
+            $table->increments('id')->unique()->notnull();
+            $table->integer('list_id')->references('id')->on('lists');
             $table->integer('movie_id')->notnull();
             $table->string('movie_title')->notnull();
             $table->string('movie_pic');
@@ -30,6 +31,6 @@ class CreateMovieListsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('movie_lists');
+        Schema::dropIfExists('movie_list');
     }
 }

@@ -9,9 +9,10 @@ use App\Lists;
 
 class MoviesListController extends Controller
 {
-    public function show($id)
+    public function show($list_id)
     {
-        $tables = MovieList::where("id", "=", $id)->get();
+        // dd($list_id);
+        $tables = MovieList::where("list_id", "=", $list_id)->get();
         return view('movielist', ['tables' => $tables]);
 
     }
@@ -21,14 +22,11 @@ class MoviesListController extends Controller
         
     }
 
-    public function delete(Request $request, $id)
+    public function delete($id)
     {
-        dd($request, $id);
-        $movieToRemove = MovieList::where("movie_id", "=", $movie_id)
-            ->where("id", '=', $id);
-        // $movieToRemove = MovieList::find($movie_id);
+        $movieToRemove = MovieList::find($id);
         $movieToRemove->delete();
 
-        return redirect()->action('MoviesListController@show');
+        return redirect()->action('MoviesListController@show', [$movieToRemove->list_id]);
     }
 }
