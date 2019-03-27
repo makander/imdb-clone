@@ -33,17 +33,14 @@ class ListsController extends Controller
     {
         $listToRemove = Lists::find($id);
         $listToRemove->delete();
-
         return redirect()->action('ListsController@show');
     }
 
-    
     public function update(Request $request, $id)
     {
-        /*       $List = Lists::find($id);
-              $List->'list_name' = $request->input('updated_name');
-              $List->save();
-              var_dump($List);
-              //return redirect()->action('ListsController@show'); */
+        $listToUpdate = Lists::find($id);
+        $listToUpdate->list_name = $request->input('updated_name');
+        $listToUpdate->save();
+        return redirect()->action('ListsController@show');
     }
 }
