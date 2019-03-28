@@ -13,6 +13,22 @@ class ReviewController extends Controller
         $data['movie_id'] = $id;
         $data['author_id'] = auth()->user()->id;
         Review::create($data);
-        return redirect()->action('MovieController@show');
+        return redirect()->back();
+    }
+
+    public function destroy($id)
+    {
+        $commentToRemove = Review::find($id);
+        $commentToRemove->delete();
+        return redirect()->back();
+    }
+
+
+    public function update(Request $request, $id)
+    {
+        $commentToUpdate = Review::find($id);
+        $commentToUpdate->content = $request->input('content');
+        $commentToUpdate->save();
+        return redirect()->back();
     }
 }

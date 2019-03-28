@@ -17,6 +17,6 @@ class Review extends Model
         'movie_id',
         'content',
         'review_rating',
-        'author_id'
+        'author_id',
     ];
 }

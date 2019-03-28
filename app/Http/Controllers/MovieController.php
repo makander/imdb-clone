@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
 use App\Review;
+use App\User;
 
 class MovieController extends Controller
 {
@@ -48,7 +49,7 @@ class MovieController extends Controller
         $detailClient = new Client();
         $result = $detailClient->get("$baseUrl");
         $details = json_decode($result->getBody());
-       
+
         $reviews = Review::where('movie_id', "=", $id)->get();
 
         // $userId = auth()->user()->id;
@@ -57,7 +58,10 @@ class MovieController extends Controller
 
         return view(
             'moviedetails',
-            compact('details', 'reviews')
+            compact(
+                'details',
+                'reviews'
+            )
         );
     }
 }

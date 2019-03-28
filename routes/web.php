@@ -24,6 +24,9 @@ Route::get('/lists/{id}', 'ListsController@update')->name('lists.update');
 Route::get('movies', 'MovieController@index');
 Route::get('movies/{id}', 'MovieController@show');
 Route::post('movies/{id}/review', 'ReviewController@store');
+Route::delete('movies/{id}', 'ReviewController@destroy')->name('review.destroy');
+Route::get('movies/{id}/updatereview', 'ReviewController@update')->name('review.update');
+
 
 Route::get('series', 'SeriesController@index');
 Route::get('cast', 'CastController@index');
