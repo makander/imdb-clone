@@ -7,7 +7,7 @@
     <p> {{$details->overview}} </p>
 </div>
 
-
+@if(auth()->user());
 <div>
     <form method="POST" action="/movies/{{$details->id}}/review" placeholder="Dead Link">
     <input type="hidden" name="nickName" value="{{ auth()->user()->nickName }}">
@@ -19,7 +19,7 @@
         </button>
     </form>
 </div>
-
+@endif
 
 <ul>
     @foreach ($reviews as $review)
@@ -27,7 +27,7 @@
        <p> User:   {{$review->nickName}} </p>
         <p> Review: {{$review->content}} </p>
 
-        @if(auth()->user()->id == $review->author_id)
+        @if(auth()->user() == true && auth()->user()->id == $review->author_id)
         <form method="POST" action="{{ route('review.destroy', [$review->id])}}">
             {{ csrf_field() }} {{ method_field('DELETE') }} <button type="submit">
                 Delete</button>
