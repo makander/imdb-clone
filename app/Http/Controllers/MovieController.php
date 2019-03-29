@@ -52,10 +52,6 @@ class MovieController extends Controller
 
         $reviews = Review::where('movie_id', "=", $id)->get();
 
-        // $userId = auth()->user()->id;
-        // $lists = Lists::where("list_owner", "=", $userId)->get();
-        // return view('lists')->with('lists', $lists);
-
         return view(
             'moviedetails',
             compact(

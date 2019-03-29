@@ -18,5 +18,6 @@ class Review extends Model
         'content',
         'review_rating',
         'author_id',
+        'nickName'
     ];
 }

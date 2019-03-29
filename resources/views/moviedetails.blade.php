@@ -10,6 +10,7 @@
 
 <div>
     <form method="POST" action="/movies/{{$details->id}}/review" placeholder="Dead Link">
+    <input type="hidden" name="nickName" value="{{ auth()->user()->nickName }}">
         @csrf
 
         <textarea name="content" rows="4" cols="50" /></textarea>
@@ -23,8 +24,8 @@
 <ul>
     @foreach ($reviews as $review)
     <li>
-        {{$review->author_id}}
-        {{$review->content}}
+       <p> User:   {{$review->nickName}} </p>
+        <p> Review: {{$review->content}} </p>
 
         @if(auth()->user()->id == $review->author_id)
         <form method="POST" action="{{ route('review.destroy', [$review->id])}}">
@@ -35,7 +36,7 @@
         <form method="GET" action="{{ route('review.update', [$review->id])}}">
             {{ csrf_field() }}
             {{ method_field('PUT') }}
-            <input type="text" name="content" placeholder="edit name">
+            <textarea name="content" rows="4" cols="50" /></textarea>
             <button type="submit">Edit</button>
         </form>
 
@@ -43,6 +44,5 @@
     </li>
     @endforeach
 </ul>
-
 
 @endsection

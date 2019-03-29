@@ -17,6 +17,7 @@ class CreateReviewsTable extends Migration
             $table->increments('id')->uniqe();
             $table->integer('movie_id')->unsigned()->notnull();
             $table->integer('author_id')->unsigned()->notnull()->references('id')->on('users');
+            $table->string('nickName')->references('nickName')->on('users');
             $table->string('content');
             $table->integer('reviewRating')->nullable()->unsigned();
         });
