@@ -17,13 +17,13 @@ Route::get('/', function () {
 Route::get('/getmovies', 'MovieController@searchMovies');
 Route::get('/movies/index', 'MovieController@index');
 Route::get('/lists', 'ListsController@show')->name('lists');
-Route::post('/lists', 'ListsController@store');
+Route::post('/lists', 'ListsController@store')->name('lists.create');
 Route::delete('/lists/{id}', 'ListsController@destroy')->name('lists.destroy');
 Route::get('/lists/{id}', 'ListsController@update')->name('lists.update');
 
 Route::get('movies', 'MovieController@index');
 Route::get('movies/{id}', 'MovieController@show');
-Route::post('movies/{id}/review', 'ReviewController@store');
+Route::post('movies/{id}/review', 'ReviewController@store')->name('review.create');
 Route::delete('movies/{id}', 'ReviewController@destroy')->name('review.destroy');
 Route::get('movies/{id}/updatereview', 'ReviewController@update')->name('review.update');
 

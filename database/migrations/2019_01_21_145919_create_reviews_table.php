@@ -20,6 +20,7 @@ class CreateReviewsTable extends Migration
             $table->string('nickName')->references('nickName')->on('users');
             $table->string('content');
             $table->integer('reviewRating')->nullable()->unsigned();
+            $table->boolean('approved')->default(0);
         });
     }
 

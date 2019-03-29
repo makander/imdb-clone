@@ -7,9 +7,11 @@
     <p> {{$details->overview}} </p>
 </div>
 
+
 @if(auth()->user());
 <div>
-    <form method="POST" action="/movies/{{$details->id}}/review" placeholder="Dead Link">
+   <form method="POST" action="{{ route('review.create', [$details->id])}}">
+    <!-- action="/movies/{{$details->id}}/review" -->
     <input type="hidden" name="nickName" value="{{ auth()->user()->nickName }}">
         @csrf
 

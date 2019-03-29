@@ -50,7 +50,7 @@ class MovieController extends Controller
         $result = $detailClient->get("$baseUrl");
         $details = json_decode($result->getBody());
 
-        $reviews = Review::where('movie_id', "=", $id)->get();
+        $reviews = Review::where('movie_id', "=", $id)->where('approved', '=', 1)->get();
 
         return view(
             'moviedetails',

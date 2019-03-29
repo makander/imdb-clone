@@ -24,7 +24,6 @@ class ReviewController extends Controller
         return redirect()->back();
     }
 
-
     public function update(Request $request, $id)
     {
         $commentToUpdate = Review::find($id);

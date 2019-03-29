@@ -6,7 +6,8 @@
 </div>
 
 <div>
-    <form method="POST" action="/lists">
+    <form method="POST" action="{{ route('lists.create')}}">
+    <!-- action="/lists"> -->
         @csrf
 
         <input type="text" name="list_name" />
