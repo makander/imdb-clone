@@ -17,6 +17,7 @@ Route::get('/movies', 'MovieController@index');
 Route::get('/movies/{id}', 'MovieController@getSingleMovie');
 Route::get('/movies/search/{query}', 'MovieController@searchMovies');
 Route::get('/tv/index', 'SeriesController@index');
+Route::view('/vue', 'vue');
 
 Route::get('movies', 'MovieController@index');
 Route::get('series', 'SeriesController@index');
