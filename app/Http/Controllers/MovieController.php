@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
+use App\Lists;
 
 class MovieController extends Controller
 {
@@ -51,6 +52,8 @@ class MovieController extends Controller
         $detailClient = new Client();
         $result = $detailClient->get("$baseUrl");
         $details = json_decode($result->getBody());
+
+        
 
 
         // $imageUrl = "https://api.themoviedb.org/3/movie/$id/images?api_key=$apiKey&language=en-US";

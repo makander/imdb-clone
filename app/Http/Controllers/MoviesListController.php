@@ -19,6 +19,9 @@ class MoviesListController extends Controller
 
     public function store()
     {
+        $userId = auth()->user()->id;
+        $myWatchlists = Lists::where("list_owner", "=", $userId)->get();
+        
         
     }
 
