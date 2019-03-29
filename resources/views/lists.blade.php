@@ -10,7 +10,7 @@
         @csrf
 
         <input type="text" name="list_name" />
-            
+
         <button type="submit">
             Create new list
         </button>
