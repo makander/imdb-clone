@@ -51,13 +51,21 @@ class MovieController extends Controller
         $result = $detailClient->get("$baseUrl");
         $details = json_decode($result->getBody());
 
+        if (auth()->user()) {
+            $userId = auth()->user()->id;
+            $watchlists = Lists::where("list_owner", "=", $userId)->get();            
+        } else {
+            $watchlists = '';
+        }
+
         $reviews = Review::where('movie_id', "=", $id)->get();
 
         return view(
             'moviedetails',
             compact(
                 'details',
-                'reviews'
+                'reviews',
+                'watchlists'
             )
         );
     }

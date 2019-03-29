@@ -19,8 +19,6 @@ class CreateMovieListsTable extends Migration
             $table->integer('movie_id')->notnull();
             $table->string('movie_title')->notnull();
             $table->string('movie_pic');
-            $table->decimal('avrage_rate');
-            $table->integer('year');
         });
     }
 

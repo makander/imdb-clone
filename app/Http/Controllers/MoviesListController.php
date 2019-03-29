@@ -17,11 +17,20 @@ class MoviesListController extends Controller
 
     }
 
-    public function store()
+    public function store(Request $request, $id)
     {
-        $userId = auth()->user()->id;
-        $myWatchlists = Lists::where("list_owner", "=", $userId)->get();
-        
+        // dd($request, $id);
+
+        // $userId = auth()->user()->id;
+        // $myWatchlists = MovieList::where("list_owner", "=", $userId)->get();
+
+        $data['list_id'] = $request->input('list_id');
+        $data['movie_id'] = $id;
+        $data['movie_title'] = $request->input('movie_title');
+        $data['movie_pic'] = $request->input('movie_pic');
+        MovieList::create($data);
+        return redirect()->back();
+
         
     }
 
