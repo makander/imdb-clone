@@ -49,7 +49,14 @@
                     <td>{{$user->lastName}}</td>
                     <td>{{$user->email}}</td>
                     <td>{{$user->role}}</td>
-                    <td><button type="button" class="btn btn-danger btn-sm">X</button></td>
+                    <td>
+                    
+                    <form method="POST" action="{{ route('users.delete', [$user->id])}}">
+                        {{ csrf_field() }}
+                        {{ method_field('DELETE') }} <button type="submit" class="btn btn-danger btn-sm">X</button>
+                    </form>
+                    
+                    </td>
                 </tr>
                 @endforeach
             </tbody>

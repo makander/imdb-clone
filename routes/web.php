@@ -24,8 +24,8 @@ Route::post('profile', '@index');
 Route::post('signup', '@index');
 
 Route::get('admin', 'AdminController@index');
-Route::get('admin/users', 'AdminController@show');
-Route::delete('admin/users/{id}', 'AdminController@delete');
+// Route::get('admin/users', 'AdminController@show');
+Route::delete('admin/deleteUser/{id}', 'AdminController@delete')->name('users.delete');
 
 Auth::routes();
 
