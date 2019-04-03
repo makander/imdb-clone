@@ -38,6 +38,7 @@
             "App\\": "app/"
         },
         "classmap": [
+            "app/Http/Controllers",
             "database/seeds",
             "database/factories"
         ]
