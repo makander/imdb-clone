@@ -17,7 +17,7 @@ Route::get('/', function () {
 Route::get('/getmovies', 'MovieController@searchMovies');
 Route::get('/movies/index', 'MovieController@index');
 Route::get('/lists', 'ListsController@show')->name('lists');
-Route::post('/lists', 'ListsController@store');
+Route::post('/lists', 'ListsController@store')->name('lists.create');
 Route::delete('/lists/{id}', 'ListsController@destroy')->name('lists.destroy');
 Route::get('/lists/{id}', 'ListsController@update')->name('lists.update');
 Route::get('/', 'MovieController@index');
@@ -27,7 +27,17 @@ Route::get('/movies/{id}', 'MovieController@getSingleMovie');
 Route::get('/movies/search/{query}', 'MovieController@searchMovies');
 Route::get('/tv/index', 'SeriesController@index');
 
+Route::get('/movielist/{id}', 'MoviesListController@show');
+Route::post('/movielist/{id}', 'MoviesListController@store')->name('movielist.store');
+Route::delete('/movielist/{id}', 'MoviesListController@delete')->name('movielist.delete');
+
 Route::get('movies', 'MovieController@index');
+Route::get('movies/{id}', 'MovieController@show');
+Route::post('movies/{id}/review', 'ReviewController@store')->name('review.create');
+Route::delete('movies/{id}', 'ReviewController@destroy')->name('review.destroy');
+Route::get('movies/{id}/updatereview', 'ReviewController@update')->name('review.update');
+
+
 Route::get('series', 'SeriesController@index');
 Route::get('login', '@index');
 Route::get('signup', '@index');

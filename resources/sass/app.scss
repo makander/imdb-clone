@@ -15,6 +15,12 @@
 }
 
 .navbar-laravel {
-  // background-color: #fff;
-  // box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.nav-link {
+  color: #ffffff !important;
+}
+.nav-link:hover {
+  color: rgb(255, 255, 255) !important;
 }
