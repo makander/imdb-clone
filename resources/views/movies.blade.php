@@ -17,7 +17,9 @@
     <div class="row">
         @foreach ($movies as $match)
         <div class="card ml-5 mt-3" style="width: 18rem;">
-            <img class="card-img-top" src="http://image.tmdb.org/t/p/w500//{{$match->poster_path}}" alt="Card image cap">
+            <a href="/movies/{{$match->id}}">
+                <img class="card-img-top" src="http://image.tmdb.org/t/p/w500//{{$match->poster_path}}" alt="Card image cap">
+            </a>
             <div class="card-body">
                 <p class="card-text">
                     <a href="/movies/{{ $match->id}}" style="text-decoration:none;color:black">
