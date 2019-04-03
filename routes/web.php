@@ -20,12 +20,6 @@ Route::get('/lists', 'ListsController@show')->name('lists');
 Route::post('/lists', 'ListsController@store')->name('lists.create');
 Route::delete('/lists/{id}', 'ListsController@destroy')->name('lists.destroy');
 Route::get('/lists/{id}', 'ListsController@update')->name('lists.update');
-Route::get('/', 'MovieController@index');
-
-Route::get('/movies', 'MovieController@index');
-Route::get('/movies/{id}', 'MovieController@getSingleMovie');
-Route::get('/movies/search/{query}', 'MovieController@searchMovies');
-Route::get('/tv/index', 'SeriesController@index');
 
 Route::get('/movielist/{id}', 'MoviesListController@show');
 Route::post('/movielist/{id}', 'MoviesListController@store')->name('movielist.store');
@@ -39,5 +33,12 @@ Route::get('movies/{id}/updatereview', 'ReviewController@update')->name('review.
 
 
 Route::get('series', 'SeriesController@index');
-Route::get('login', '@index');
-Route::get('signup', '@index');
+Route::get('cast', 'CastController@index');
+
+Route::post('login', '@index');
+Route::post('profile', '@index');
+Route::post('signup', '@index');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
