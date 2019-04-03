@@ -46,18 +46,27 @@ class MovieController extends Controller
     {
         $apiKey = "f9948c89015a41a0a70d75d459c92e4f";
         $baseUrl =  "https://api.themoviedb.org/3/movie/$id?api_key=$apiKey&language=en-US";
-        $detailClient = new Client();
-        $result = $detailClient->get("$baseUrl");
+        $client = new Client();
+        $result = $client->get("$baseUrl");
         $details = json_decode($result->getBody());
 
+<<<<<<< HEAD
         $reviews = Review::where('movie_id', "=", $id)->where('approved', '=', 1)->get();
+=======
+        //var_dump($details);
+        return view('details', [
+            'details' => $details
+        ]);
 
-        return view(
-            'moviedetails',
-            compact(
-                'details',
-                'reviews'
-            )
-        );
+        //$reviews = Review::where('movie_id', "=", $id)->get();
+>>>>>>> design
+
+        // return view(
+        //     'moviedetails',
+        //     compact(
+        //         'details',
+        //         'reviews'
+        //     )
+        // );
     }
 }
