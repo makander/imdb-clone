@@ -53,7 +53,8 @@
                     
                     <form method="POST" action="{{ route('users.delete', [$user->id])}}">
                         {{ csrf_field() }}
-                        {{ method_field('DELETE') }} <button type="submit" class="btn btn-danger btn-sm">X</button>
+                        {{ method_field('DELETE') }} 
+                        <button type="submit" class="btn btn-danger btn-sm">X</button>
                     </form>
                     
                     </td>
@@ -69,7 +70,44 @@
       
       <h2>Overview of reviews</h2>
       <p>You can approve reviews here</p>
-      
+
+      <div class="table-responsive">
+      <table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">Movie ID</th>
+      <th scope="col">Author</th>
+      <th colspan="2">Review</th>
+      <th scope="col">Rating</th>
+      <th scope="col">Approved?</th>
+    </tr>
+  </thead>
+  <tbody>
+
+  @foreach($reviews as $review)
+    <tr>
+      <th scope="row">{{ $review->movie_id }}</th>
+      <td>{{ $review->nickName }}</td>
+      <td colspan="2">{{ $review->content }}</td>
+      <td>{{ $review->reviewRating }}</td>
+      <td>
+      <form method="GET" action="{{ route('review.approve', [$review->id])}}" style="display: inline-block">
+          {{ csrf_field() }}
+          {{ method_field('PUT') }} 
+          <button type="submit" class="btn btn-success btn-sm">✓</button>
+        </form>
+        <form method="POST" action="{{ route('review.delete', [$review->id])}}" style="display: inline-block">
+          {{ csrf_field() }}
+          {{ method_field('DELETE') }} 
+          <button type="submit" class="btn btn-danger btn-sm">X</button>
+        </form>
+      </td>
+    </tr>
+    @endforeach
+
+  </tbody>
+</table>
+      </div>
       </div>
       
     </div>

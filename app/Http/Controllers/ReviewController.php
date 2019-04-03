@@ -7,6 +7,8 @@ use App\Review;
 
 class ReviewController extends Controller
 {
+
+
     public function store(Request $request, $id)
     {
         $data['content'] = $request->input('content');
