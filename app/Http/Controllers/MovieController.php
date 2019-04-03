@@ -50,23 +50,11 @@ class MovieController extends Controller
         $result = $client->get("$baseUrl");
         $details = json_decode($result->getBody());
 
-<<<<<<< HEAD
         $reviews = Review::where('movie_id', "=", $id)->where('approved', '=', 1)->get();
-=======
-        //var_dump($details);
+
         return view('details', [
-            'details' => $details
+            'details' => $details,
+            'reviews' => $reviews
         ]);
-
-        //$reviews = Review::where('movie_id', "=", $id)->get();
->>>>>>> design
-
-        // return view(
-        //     'moviedetails',
-        //     compact(
-        //         'details',
-        //         'reviews'
-        //     )
-        // );
     }
 }

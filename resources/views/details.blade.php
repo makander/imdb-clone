@@ -24,6 +24,45 @@
             </div>
         </div>
     </div>
+    
+@if(auth()->user());
+<div>
+   <form method="POST" action="{{ route('review.create', [$details->id])}}">
+    <!-- action="/movies/{{$details->id}}/review" -->
+    <input type="hidden" name="nickName" value="{{ auth()->user()->nickName }}">
+        @csrf
+
+        <textarea name="content" rows="4" cols="50" /></textarea>
+        <button type="submit">
+            Submit
+        </button>
+    </form>
+</div>
+@endif
+
+<ul>
+    @foreach ($reviews as $review)
+    <li>
+       <p> User:   {{$review->nickName}} </p>
+        <p> Review: {{$review->content}} </p>
+
+        @if(auth()->user() == true && auth()->user()->id == $review->author_id)
+        <form method="POST" action="{{ route('review.destroy', [$review->id])}}">
+            {{ csrf_field() }} {{ method_field('DELETE') }} <button type="submit">
+                Delete</button>
+        </form>
+
+        <form method="GET" action="{{ route('review.update', [$review->id])}}">
+            {{ csrf_field() }}
+            {{ method_field('PUT') }}
+            <textarea name="content" rows="4" cols="50" /></textarea>
+            <button type="submit">Edit</button>
+        </form>
+
+        @endif
+    </li>
+    @endforeach
+</ul>
 </div>
 <script>
 
