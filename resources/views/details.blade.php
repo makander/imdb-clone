@@ -38,7 +38,7 @@
 
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 @foreach ($watchlists as $watchlist)
-                    <a class="dropdown-item" href="#"> {{ $watchlist->list_name }}</a>
+                    <a class="dropdown-item"> {{ $watchlist->list_name }}</a>
                     <input type="hidden" name="list_id" value="{{ $watchlist->id }}">
                 @endforeach
             </div>
