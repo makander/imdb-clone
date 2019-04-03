@@ -71,7 +71,7 @@ class MovieController extends Controller
         $reviews = Review::where('movie_id', "=", $id)->get();
 
         return view(
-            'moviedetails',
+            'details',
             compact(
                 'details',
                 'reviews',
