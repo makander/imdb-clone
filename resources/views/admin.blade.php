@@ -4,6 +4,12 @@
 <div>
     <div class="row" style="margin-right: 0;">
   <div class="col-3">
+  <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+    <div style="padding: 10px;">
+      <h5>You are logged in as:</h4>
+      <h6>{{ Auth::user()->firstName }} {{ Auth::user()->lastName }}</h5>
+    </div>
+  </div>
     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
       <a class="nav-link active" id="v-pills-dashboard-tab" data-toggle="pill" href="#v-pills-dashboard" role="tab" aria-controls="v-pills-dashboard" aria-selected="true">Dashboard</a>
       <a class="nav-link" id="v-pills-users-tab" data-toggle="pill" href="#v-pills-users" role="tab" aria-controls="v-pills-users" aria-selected="false">Users</a>
