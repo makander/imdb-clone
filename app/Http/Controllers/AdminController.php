@@ -27,17 +27,14 @@ class AdminController extends Controller
 
     public function delete($id)
     {
-        
         $deleteUser = User::find($id);
         $deleteUser->delete();
-   
         
         return redirect()->action('AdminController@index');
     }
 
     public function deleteReview($id)
     {
-        
         $deleteReview = Review::find($id);
         $deleteReview->delete();
         
