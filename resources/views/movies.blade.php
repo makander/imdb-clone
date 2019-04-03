@@ -1,38 +1,65 @@
 @extends('layouts.app')
 @section('content')
+<link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
 
-<div class="main">
-    <div class="jumbotron">
-        <div class="container bg-light rounded p-5">
-            <p>
-                Search for a movie! 
-            </p>
-            <div class="form-inline">
-                <input class="form-control mr-sm-2" id="searchField" type="search" placeholder="Search movies" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" onclick="searchMovie()" type="submit">Search</button>
+
+<div>
+    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+        <div class="carousel-item active">
+            <div style="
+        background-image: url('https://image.tmdb.org/t/p/original/{{$movies[1]->backdrop_path}}');
+        height:60vh;
+        width:100vw;
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;"></div>
+        </div>
+        <div class="carousel-item">
+            <div class="media" style="display:flex;flex-direction:column;">
+                <div style="
+        background-image: url('https://image.tmdb.org/t/p/original/{{$movies[0]->backdrop_path}}');
+        height:60vh;
+        width:100vw;
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;"></div>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="media" style="display:flex;flex-direction:column;">
+                <div style="
+        background-image: url('https://image.tmdb.org/t/p/original/{{$movies[2]->backdrop_path}}');
+        height:60vh;
+        width:100vw;
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;"></div>
             </div>
         </div>
     </div>
 
-    <div class="row">
+
+
+
+    <div class="row justify-content-center">
+
         @foreach ($movies as $match)
-        <div class="card ml-5 mt-3" style="width: 18rem;">
-            <img class="card-img-top" src="http://image.tmdb.org/t/p/w500//{{$match->poster_path}}" alt="Card image cap">
+
+        <div class="card p-2 m-2 text-center shadow" style="width: 16rem;">
+            <img class=" card-img-top" src="http://image.tmdb.org/t/p/w500//{{$match->poster_path}}"
+                alt="Card image cap">
             <div class="card-body">
-                <p class="card-text">
-                    <a href="/movies/{{ $match->id}}" style="text-decoration:none;color:black">
-                        <b>{{ $match->title }}</b> ({{ $match->release_date }})</a>
+                <h5 class="card-title">
+                    <a href="/movies/{{ $match->id}}">
+                        <b>{{ $match->title }}</b> </h5>
+                <p>({{ $match->release_date }})</a>
                 </p>
             </div>
         </div>
         @endforeach
     </div>
 </div>
-<script>
-   function searchMovie() {
-     let query = document.querySelector('#searchField').value;
-     window.location.replace(`http://dimb.test/movies/search/${query}`);
- }
- 
-</script>
 @endsection
