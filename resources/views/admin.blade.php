@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-@if(auth()->user()->role == 1)
+@if(auth()->user()->role == 1 || auth()->user()->role == 2)
 <div>
     <div class="row" style="margin-right: 0;">
   <div class="col-3">

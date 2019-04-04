@@ -5,17 +5,35 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Review;
+use Auth;
 
 class AdminController extends Controller
 {
 
     public function index()
     {
-        $users = User::all();
-        $reviews = Review::all()->where('approved', 0);
 
-        return view('/admin', compact('users','reviews'));
-        
+        $role = Auth::user()->role; 
+    
+        switch ($role) {
+        case '2':
+                $users = User::all();
+                $reviews = Review::all()->where('approved', 0);
+
+                return view('/admin', compact('users','reviews'));
+            break;
+        case '1':
+
+                $users = User::all()->where('role', 0);
+                $reviews = Review::all()->where('approved', 0);
+
+                return view('/admin', compact('users','reviews'));
+            break;
+        default:
+                return view('/admin', compact('users','reviews'));
+            break;
+        }
+
     }
 
     public function edit(Request $request, $id) 
