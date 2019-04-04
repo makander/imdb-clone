@@ -26,7 +26,7 @@
     </div>
     
     @if(auth()->user())
-<div>        
+<div class="">        
     <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Add to Watchlist
