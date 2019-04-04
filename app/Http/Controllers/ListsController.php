@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Lists;
 use App\User;
+use App\MovieList;
 
 class ListsController extends Controller
 {
@@ -18,7 +19,13 @@ class ListsController extends Controller
     {
         $userId = auth()->user()->id;
         $lists = Lists::where("list_owner", "=", $userId)->get();
-        return view('lists')->with('lists', $lists);
+        $listOwners = $lists[0]->id;
+        $moviesInList = MovieList::where("list_id", "=", $listOwners)->get();
+        return view('lists', [
+            'lists' => $lists,
+            'moviesInList' => $moviesInList
+            ]
+        );
     }
 
     public function store(Request $request)

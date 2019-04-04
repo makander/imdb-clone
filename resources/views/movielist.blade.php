@@ -2,6 +2,7 @@
 @section('content')
 <link rel="stylesheet" type="text/css" href="{{ asset('css/movielist.css') }}" >
 
+
 <button><a href="../lists">< Back to lists</a></button>
 <br>
 <div class="container xcontainer">
