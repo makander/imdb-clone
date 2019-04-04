@@ -13,7 +13,8 @@
         background-size: cover;"></div>
 
         <div style="width:80vw;height:500px; display:flex;">
-            <img src="http://image.tmdb.org/t/p/w500//{{$details->poster_path}}" class="align-self-start mr-3" alt="...">
+            <img src="http://image.tmdb.org/t/p/w500//{{$details->poster_path}}" class="align-self-start mr-3"
+                alt="...">
             <div class="media-body jumbotron">
                 <h5 class="mt-0">{{$details->title}}</h5>
                 <h3>Summary</h3>
@@ -55,31 +56,45 @@
 </div>
 @endif
 
-<ul>
-    @foreach ($reviews as $review)
-    <li>
-       <p> User:   {{$review->nickName}} </p>
-        <p> Review: {{$review->content}} </p>
 
-        @if(auth()->user() == true && auth()->user()->id == $review->author_id)
-        <form method="POST" action="{{ route('review.destroy', [$review->id])}}">
-            {{ csrf_field() }} {{ method_field('DELETE') }} <button type="submit">
-                Delete</button>
-        </form>
+    @if(auth()->user());
+    <div>
+        <form method="POST" action="{{ route('review.create', [$details->id])}}">
+            <input type="hidden" name="nickName" value="{{ auth()->user()->nickName }}">
+            @csrf
 
-        <form method="GET" action="{{ route('review.update', [$review->id])}}">
-            {{ csrf_field() }}
-            {{ method_field('PUT') }}
             <textarea name="content" rows="4" cols="50" /></textarea>
-            <button type="submit">Edit</button>
+            <button type="submit">
+                Submit
+            </button>
         </form>
+    </div>
+    @endif
 
-        @endif
-    </li>
-    @endforeach
-</ul>
+    <ul>
+        @foreach ($reviews as $review)
+        <li>
+            <p> User: {{$review->nickName}} </p>
+            <p> Review: {{$review->content}} </p>
+
+            @if(auth()->user() == true && auth()->user()->id == $review->author_id)
+            <form method="POST" action="{{ route('review.destroy', [$review->id])}}">
+                {{ csrf_field() }} {{ method_field('DELETE') }} <button type="submit">
+                    Delete</button>
+            </form>
+
+            <form method="GET" action="{{ route('review.update', [$review->id])}}">
+                {{ csrf_field() }}
+                {{ method_field('PUT') }}
+                <textarea name="content" rows="4" cols="50" /></textarea>
+                <button type="submit">Edit</button>
+            </form>
+
+            @endif
+        </li>
+        @endforeach
+    </ul>
 </div>
 <script>
-
 </script>
-@endsection 
+@endsection
