@@ -55,12 +55,43 @@
                     <td>{{$user->email}}</td>
                     <td>{{$user->role}}</td>
                     <td>
+
+                    <button style="display: inline-block" class="btn btn-primary btn-sm" type="submit" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    ✎
+                    </button>
                     
-                    <form method="POST" action="{{ route('users.delete', [$user->id])}}">
+                    <form method="POST" action="{{ route('users.delete', [$user->id])}}" style="display: inline-block">
                         {{ csrf_field() }}
                         {{ method_field('DELETE') }} 
-                        <button type="submit" class="btn btn-danger btn-sm">X</button>
+                        <button type="submit" class="btn btn-danger btn-sm">✘</button>
                     </form>
+
+                    <div class="collapse" id="collapseExample">
+                      <div class="card card-body">
+                          <form method="GET" action="{{ route('users.edit', [$user->id])}}" style="display: inline-block">
+                            {{ csrf_field() }}
+                            {{ method_field('PUT') }} 
+
+                            <div class="input-group" style="margin: 5px;">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text">First/last name</span>
+                              </div>
+                                <input type="text" aria-label="First name" name="firstName" class="form-control" placeholder="{{ $user->firstName }}">
+                                <input type="text" aria-label="Last name" name="lastName" class="form-control" placeholder="{{ $user->lastName }}">
+                            </div>
+
+                            <div class="input-group" style="margin: 5px;">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text">Email</span>
+                              </div>
+                                <input type="text" aria-label="Email" name="email" class="form-control" placeholder="{{ $user->email }}">
+                            </div>
+
+                        <button class="btn btn-danger btn-sm" style="float: right;">Submit changes</button>
+
+                    </form>
+                      </div>
+                    </div>
                     
                     </td>
                 </tr>

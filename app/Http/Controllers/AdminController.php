@@ -18,6 +18,18 @@ class AdminController extends Controller
         
     }
 
+    public function edit(Request $request, $id) 
+    {
+
+        $editUser = User::find($id);
+        $editUser->firstName = $request->input('firstName');
+        $editUser->lastName = $request->input('lastName');
+        $editUser->email = $request->input('email');
+        $editUser->save();
+
+        return redirect()->back();
+    }
+
     public function update($id)
     {
         $approveReview = Review::find($id)->update(['approved' => 1]);

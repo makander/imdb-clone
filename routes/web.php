@@ -24,6 +24,7 @@ Route::post('profile', '@index');
 Route::post('signup', '@index');
 
 Route::get('admin', 'AdminController@index');
+Route::get('admin/editUser/{id}', 'AdminController@edit')->name('users.edit');
 Route::delete('admin/deleteUser/{id}', 'AdminController@delete')->name('users.delete');
 Route::get('admin/approveReview/{id}', 'AdminController@update')->name('review.approve');
 Route::delete('admin/deleteReview/{id}', 'AdminController@deleteReview')->name('review.delete');
