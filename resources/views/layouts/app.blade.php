@@ -39,15 +39,13 @@
                     <ul class="navbar-nav mr-auto">
 
                         <div class="form-inline">
-                            <form method="POST" action="search.get">
-                                <input class="form-control" id="searchField" type="search" placeholder="Search movies"
+                            <form method="POST" action="search">
+                                <input class="form-control" id="searchField" type="text" placeholder="Search movies"
                                     aria-label="Search" name="search">
                                 {{ csrf_field() }}
-                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                                <button class=" btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                             </form>
                         </div>
-
-
                     </ul>
 
                     <!-- Right Side Of Navbar -->

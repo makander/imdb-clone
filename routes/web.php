@@ -11,9 +11,11 @@
 |
 */
 
+
 Route::get('/', 'MovieController@index');
-//Route::get('/getmovies', 'MovieController@searchMovies');
-Route::post('/{search}', 'MovieController@searchMovies')->name('search.get');
+Route::post('/search', 'MovieController@searchMovies')->name('search');
+Route::get('movies/{id}', 'MovieController@show');
+
 Route::get('/lists', 'ListsController@show')->name('lists');
 Route::post('/lists', 'ListsController@store')->name('lists.create');
 Route::delete('/lists/{id}', 'ListsController@destroy')->name('lists.destroy');
@@ -23,8 +25,7 @@ Route::get('/movielist/{id}', 'MoviesListController@show')->name('movie.get');
 Route::post('/movielist/{id}', 'MoviesListController@store')->name('movielist.store');
 Route::delete('/movielist/{id}', 'MoviesListController@delete')->name('movielist.delete');
 
-//Route::get('movies', 'MovieController@index');
-Route::get('movies/{id}', 'MovieController@show');
+
 Route::post('movies/{id}/review', 'ReviewController@store')->name('review.create');
 Route::delete('movies/{id}', 'ReviewController@destroy')->name('review.destroy');
 Route::get('movies/{id}/updatereview', 'ReviewController@update')->name('review.update');

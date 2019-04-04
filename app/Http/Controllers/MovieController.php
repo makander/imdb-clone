@@ -31,7 +31,7 @@ class MovieController extends Controller
         $client = new Client();
         $result = $client->get("$baseUrl");
         $movies = json_decode($result->getBody())->results;
-        return view('movies', [
+        return view('search', [
             'movies' => $movies
         ])
         ;
