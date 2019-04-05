@@ -30,6 +30,12 @@ Route::post('movies/{id}/review', 'ReviewController@store')->name('review.create
 Route::delete('movies/{id}', 'ReviewController@destroy')->name('review.destroy');
 Route::get('movies/{id}/updatereview', 'ReviewController@update')->name('review.update');
 
+Route::fallback(
+    function () {
+        return view('fallback');
+    }
+);
+
 
 //Route::get('series', 'SeriesController@index');
 //Route::get('cast', 'CastController@index');

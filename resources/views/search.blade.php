@@ -47,7 +47,7 @@
     <div class="row justify-content-center">
 
         @foreach ($movies as $match)
-
+        @if($match->poster_path)
         <div class="card p-2 m-2 text-center shadow" style="width: 16rem;">
             <img class=" card-img-top" src="http://image.tmdb.org/t/p/w500//{{$match->poster_path}}"
                 alt="Card image cap">
@@ -59,6 +59,7 @@
                 </p>
             </div>
         </div>
+        @endif
         @endforeach
     </div>
 </div>

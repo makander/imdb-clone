@@ -4,7 +4,7 @@
 
 
 <div>
-    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
         <div class="carousel-item active">
             <div style="
         background-image: url('https://image.tmdb.org/t/p/original/{{$movies[1]->backdrop_path}}');

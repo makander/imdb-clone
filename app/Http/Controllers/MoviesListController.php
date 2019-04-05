@@ -18,10 +18,6 @@ class MoviesListController extends Controller
 
     public function store(Request $request, $id)
     {
-        // dd($request, $id);
-
-        // $userId = auth()->user()->id;
-        // $myWatchlists = MovieList::where("list_owner", "=", $userId)->get();
         if ($request->input('list_id') && $id) {
             $data['list_id'] = $request->input('list_id');
             $data['movie_id'] = $id;

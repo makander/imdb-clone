@@ -33,10 +33,15 @@ class MovieController extends Controller
         $client = new Client();
         $result = $client->get("$baseUrl");
         $movies = json_decode($result->getBody())->results;
-        return view('search', [
-            'movies' => $movies
-        ])
-        ;
+
+        if ($movies == []) {
+            return view('fallback');
+        } else {
+            return view('search', [
+                'movies' => $movies
+            ])
+            ;
+        }
     }
 
     public function searchTvShows($query)
