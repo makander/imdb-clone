@@ -1,0 +1,40 @@
+.container .dashboard {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+}
+
+.col-8 {
+    padding-right: 0;
+}
+
+h5 {
+    padding: 10px;
+    background: #33a563e3;
+}
+
+
+@media (min-width: 320px) and (max-width: 480px) {
+  
+    h2 {
+        font-size: 20px;
+    }
+
+    .row {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .dashboard-overview {
+        font-size: 16px;
+    }
+
+    .col-4 {
+        max-width: 100%;
+    }
+
+    .col-8 {
+        max-width: 100%;
+    }
+    
+  }

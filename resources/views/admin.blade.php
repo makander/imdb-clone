@@ -1,12 +1,15 @@
 @extends('layouts.app')
 @section('content')
+
+<link rel="stylesheet" type="text/css" href="{{ asset('css/admin.css') }}">
+
 @if(auth()->user()->role == 1 || auth()->user()->role == 2)
-<div>
+<div class="dashboard-all">
     <div class="row" style="margin-right: 0;">
-  <div class="col-3">
+  <div class="col-4">
   <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-    <div style="padding: 10px;">
-      <h5>You are logged in as:</h4>
+    <div class="user-info" style="padding: 10px;">
+      <h5>You are logged in as</h4>
       <h6>{{ Auth::user()->firstName }} {{ Auth::user()->lastName }}</h5>
     </div>
   </div>
@@ -16,14 +19,16 @@
       <a class="nav-link" id="v-pills-reviews-tab" data-toggle="pill" href="#v-pills-reviews" role="tab" aria-controls="v-pills-reviws" aria-selected="false">Reviews</a>
     </div>
   </div>
-  <div class="col-9">
+  <div class="col-8">
     <div class="tab-content" id="v-pills-tabContent">
       <div class="tab-pane fade show active" id="v-pills-dashboard" role="tabpanel" aria-labelledby="v-pills-dashboard-tab">
       
       <div class="jumbotron jumbotron-fluid">
-            <div class="container">
-                <h1 class="display-4">Dashboard</h1>
-                <p class="lead">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+            <div class="container dashboard">
+                <h2>Dashboard</h2>
+                <div class="dashboard-overview">Total users:  {{ count($users) }}</div>
+                <div class="dashboard-overview">Total pending reviews:  {{ count($reviews) }}</div>
+                
             </div>
       </div>
 
@@ -74,20 +79,33 @@
 
                             <div class="input-group" style="margin: 5px;">
                               <div class="input-group-prepend">
-                                <span class="input-group-text">First/last name</span>
+                                <span class="input-group-text">Fullname:</span>
                               </div>
-                                <input type="text" aria-label="First name" name="firstName" class="form-control" placeholder="{{ $user->firstName }}">
-                                <input type="text" aria-label="Last name" name="lastName" class="form-control" placeholder="{{ $user->lastName }}">
+                                <input type="text" aria-label="First name" name="firstName" class="form-control" placeholder="{{ $user->firstName }}" required>
+                                <input type="text" aria-label="Last name" name="lastName" class="form-control" placeholder="{{ $user->lastName }}" required>
                             </div>
 
                             <div class="input-group" style="margin: 5px;">
                               <div class="input-group-prepend">
-                                <span class="input-group-text">Email</span>
+                                <span class="input-group-text">Email:</span>
                               </div>
-                                <input type="text" aria-label="Email" name="email" class="form-control" placeholder="{{ $user->email }}">
+                                <input type="text" aria-label="Email" name="email" class="form-control" placeholder="{{ $user->email }}" required>
                             </div>
 
+                            @if (auth()->user()->role == 2)
+
+                            <div class="input-group" style="margin: 5px;">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text">Role:</span>
+                              </div>
+                              <input type="text" aria-label="Role" name="role" class="form-control" placeholder="{{ $user->role }}" required>
+                            </div>
+                                
+                            @endif
+
                         <button class="btn btn-danger btn-sm" style="float: right;">Submit changes</button>
+
+
 
                     </form>
                       </div>
@@ -122,7 +140,7 @@
 
   @foreach($reviews as $review)
     <tr>
-      <th scope="row"><a href="{{ route('movie', [$review->movie_id]) }}">{{ $review->movie_id }}</a></th>
+      <th scope="row"><a href="{{ route('movie.get', [$review->movie_id]) }}">{{ $review->movie_id }}</a></th>
       <td>{{ $review->nickName }}</td>
       <td colspan="2">{{ $review->content }}</td>
       <td>{{ $review->reviewRating }}</td>

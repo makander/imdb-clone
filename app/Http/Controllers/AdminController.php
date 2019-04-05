@@ -57,6 +57,7 @@ class AdminController extends Controller
         $editUser->firstName = $request->input('firstName');
         $editUser->lastName = $request->input('lastName');
         $editUser->email = $request->input('email');
+        $editUser->role = $request->input('role');
         $editUser->save();
 
         return redirect()->back();
