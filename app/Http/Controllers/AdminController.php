@@ -13,6 +13,11 @@ class AdminController extends Controller
     public function index()
     {
 
+
+        if(Auth::guest()) {
+            return redirect('/login');
+        } else {
+
         $role = Auth::user()->role; 
     
         switch ($role) {
@@ -29,10 +34,19 @@ class AdminController extends Controller
 
                 return view('/admin', compact('users','reviews'));
             break;
+        
+        case 'non-object':
+
+                return view('/');
+
+            break;
+
         default:
-                return view('/admin', compact('users','reviews'));
+                return view('/');
             break;
         }
+    
+    }
 
     }
 
