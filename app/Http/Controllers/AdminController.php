@@ -35,18 +35,18 @@ class AdminController extends Controller
                 return view('/admin', compact('users','reviews'));
             break;
         
-        case 'non-object':
+        case '0':
 
-                return view('/');
-
+                return view('/home');
             break;
 
         default:
                 return view('/');
             break;
-        }
+
+            }
     
-    }
+        }
 
     }
 

@@ -122,7 +122,7 @@
 
   @foreach($reviews as $review)
     <tr>
-      <th scope="row">{{ $review->movie_id }}</th>
+      <th scope="row"><a href="{{ route('movie', [$review->movie_id]) }}">{{ $review->movie_id }}</a></th>
       <td>{{ $review->nickName }}</td>
       <td colspan="2">{{ $review->content }}</td>
       <td>{{ $review->reviewRating }}</td>

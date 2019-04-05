@@ -11,7 +11,7 @@ Route::delete('/lists/{id}', 'ListsController@destroy')->name('lists.destroy');
 Route::get('/lists/{id}', 'ListsController@update')->name('lists.update');
 
 Route::get('movies', 'MovieController@index');
-Route::get('movies/{id}', 'MovieController@show');
+Route::get('movies/{id}', 'MovieController@show')->name('movie');
 Route::post('movies/{id}/review', 'ReviewController@store');
 Route::delete('movies/{id}', 'ReviewController@destroy')->name('review.destroy');
 Route::get('movies/{id}/updatereview', 'ReviewController@update')->name('review.update');
@@ -23,7 +23,7 @@ Route::post('login', '@index');
 Route::post('profile', '@index');
 Route::post('signup', '@index');
 
-Route::get('admin', 'AdminController@index');
+Route::get('admin', 'AdminController@index')->name('admin');
 Route::get('admin/editUser/{id}', 'AdminController@edit')->name('users.edit');
 Route::delete('admin/deleteUser/{id}', 'AdminController@delete')->name('users.delete');
 Route::get('admin/approveReview/{id}', 'AdminController@update')->name('review.approve');
