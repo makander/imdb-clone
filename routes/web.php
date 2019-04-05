@@ -13,6 +13,7 @@
 
 
 Route::get('/', 'MovieController@index');
+
 Route::post('/search', 'MovieController@searchMovies')->name('search');
 Route::post('/movies/search', 'MovieController@searchMovies')->name('search');
 Route::post('/movielist/search', 'MovieController@searchMovies')->name('search');
