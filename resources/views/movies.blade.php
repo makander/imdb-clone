@@ -4,7 +4,7 @@
 
 
 <div>
-    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+    <div id="carousel" class="carousel slide" data-ride="carousel">
         <div class="carousel-item active">
             <div style="
         background-image: url('https://image.tmdb.org/t/p/original/{{$movies[1]->backdrop_path}}');
@@ -43,7 +43,6 @@
 
 
 
-
     <div class="row justify-content-center">
 
         @foreach ($movies as $match)
@@ -54,8 +53,8 @@
             <div class="card-body">
                 <h5 class="card-title">
                     <a href="/movies/{{ $match->id}}">
-                        <b>{{ $match->title }}</b> </h5>
-                <p>({{ $match->release_date }})</a>
+                        <b>{{ $match->title }}</b> </h5></a>
+                <p>({{ $match->release_date }})
                 </p>
             </div>
         </div>

@@ -5,3 +5,10 @@
 .d-block {
     background-size: cover;
 }
+
+
+@media (max-width:800px) {
+    #carousel {
+        display:none !important;
+    }
+}

@@ -11,136 +11,125 @@
         <div class="d-flex justify-content-center">
             <div class="d-flex flex-row">
                 <div class="p-2">
-                    <img src="http://image.tmdb.org/t/p/w500//{{$details->poster_path}}" class="shadow" alt="...">
+                    <img src="http://image.tmdb.org/t/p/w500//{{$details->poster_path}}" class="shadow-lg" alt="...">
                 </div>
                 <div>
-                    <div class="m-4 p-4">
+                    <div class="mx-2 px-4">
                         <h1 class="display-4">{{$details->title}}</h1>
-                        <h3>Summary</h3>
                         <p> Release Date: {{ $details->release_date}} </p>
                         <p id="summary"> {{$details->overview}}</p>
-                        <h5>Release Date: {{ $details->release_date}} </h5>
-                        <h5>Rating: {{ $details->vote_average}}</h5>
+                        <p>Rating: {{ $details->vote_average}}</p>
+                    </div>
+                    @if(auth()->user())
 
-                        @if(auth()->user())
-                        <div>
+                    <div class="mx-4 px-4">
+                        <form class="form-inline" method="POST" action="{{ route('movielist.store', [$details->id])}}">
+                            @csrf
+                            <input type="hidden" name="movie_title" value="{{ $details->title }}">
+                            <input type="hidden" name="movie_pic" value="{{ $details->poster_path }}">
 
-                            <form class="form-inline" method="POST"
-                                action="{{ route('movielist.store', [$details->id])}}">
-                                @csrf
-                                <input type="hidden" name="movie_title" value="{{ $details->title }}">
-                                <input type="hidden" name="movie_pic" value="{{ $details->poster_path }}">
-
-                                <label class="col-md-4 control-label" for="watchlists">Add to watchlist</label>
-                                <div class="col-md-4">
-                                    <select id="" name="list_id" class="form-control p-3">
-                                        @foreach ($watchlists as $watchlist)
-                                        <option value="{{ $watchlist->id }}">{{ $watchlist->list_name }} </option>
-                                        @endforeach
-                                    </select>
-                                    <button class="btn btn-outline-success px-2" type="submit">Add</button>
-                                </div>
-                            </form>
-                        </div>
-                        @endif
-
-
-                        @if(auth()->user())
-                        <div class="form-group">
-                            <form method="POST" action="{{ route('review.create', [$details->id])}}">
-                                <input type="hidden" name="nickName" value="{{ auth()->user()->nickName }}">
-                                @csrf
-
-                                <label for="Review">Review</label>
-                                <textarea class="form-control" name="content" rows="4" cols="50" /></textarea>
-                                <div>
-                                    <button type="submit" class="btn btn-outline-success">Submit</button>
-                                </div>
-                            </form>
-                        </div>
-                        @endif
-                        @foreach ($reviews as $review)
-                        <p> User: {{$review->nickName}} Review: {{$review->content}} </p>
-                        <div class="form-group">
-                            @if(auth()->user() == true && auth()->user()->id == $review->author_id)
-
-
-                            <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-primary" data-toggle="modal"
-                                data-target="#exampleModalCenter">
-                                Edit review
-                            </button>
-
-                            <!-- Modal -->
-                            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
-                                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalCenterTitle">Edit Review</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body d-flex">
-
-                                            <ul class="list-inline">
-                                                <li class="list-inline-item">
-                                                    <form method="GET"
-                                                        action="{{ route('review.update', [$review->id])}}">
-                                                        {{ csrf_field() }}
-                                                        {{ method_field('PUT') }}
-                                                        <textarea name="content" rows="3" cols="40" /></textarea>
-                                                        <button class="btn btn-outline-primary"
-                                                            type="submit">Edit</button>
-                                                    </form>
-                                                </li>
-                                                <li class="list-inline-item">
-                                                    <form method="POST"
-                                                        action="{{ route('review.destroy', [$review->id])}}">
-                                                        {{ csrf_field() }} {{ method_field('DELETE') }}
-
-                                                        <button class="btn btn-outline-danger" type="submit">
-                                                            Delete</button>
-                                                    </form>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
+                            <label class="col-md-4 control-label" for="watchlists">Add to watchlist</label>
+                            <div class="col-md-4">
+                                <select id="" name="list_id" class="form-control p-3">
+                                    @foreach ($watchlists as $watchlist)
+                                    <option value="{{ $watchlist->id }}">{{ $watchlist->list_name }} </option>
+                                    @endforeach
+                                </select>
+                                <button class="btn btn-outline-success px-2" type="submit">Add</button>
                             </div>
+                        </form>
+                    </div>
+
+                    @endif
+
+
+
+                    <div class="mx-2 p-4">
+
+                        <h1>Reviews</h1>
+
+                        @foreach ($reviews as $review)
+
+                        <div class="reivew-container">
+                            <hr>
+                            <p id="review-user"> User: {{$review->nickName}} </p> </br>
+                            <p>{{$review->content}} </p>
                         </div>
 
-
-                        <!-- 
-                            <form method="GET" action="{{ route('review.update', [$review->id])}}">
-                                {{ csrf_field() }}
-                                {{ method_field('PUT') }}
-                                <textarea name="content" rows="3" cols="40" /></textarea>
-                                </br>
-                                <button class="btn btn-outline-primary" type="submit">Edit</button>
-                            </form>
+                        @if(auth()->user() == true && auth()->user()->id == $review->author_id)
+                        <div class="btn-group">
 
                             <form method="POST" action="{{ route('review.destroy', [$review->id])}}">
                                 {{ csrf_field() }} {{ method_field('DELETE') }}
 
-                                <button class="btn btn-outline-danger inline" type="submit">
-                                    Delete</button>
-                            </form> -->
+                                <button class="btn btn-danger mr-2" type="submit">Delete</button>
+                            </form>
 
+                            <div class="form-group">
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#exampleModalCenter">
+                                    Edit review
+                                </button>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                                    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalCenterTitle">Edit Review
+                                                </h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body d-flex">
+                                                <ul class="list-inline">
+                                                    <li class="list-inline-item">
+                                                        <form method="GET"
+                                                            action="{{ route('review.update', [$review->id])}}">
+                                                            {{ csrf_field() }}
+                                                            {{ method_field('PUT') }}
+                                                            <textarea name="content" rows="3" cols="40" /></textarea>
+                                                            <button class="btn btn-outline-primary"
+                                                                type="submit">Edit</button>
+                                                        </form>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @endif
+                        </div>
+                        @endforeach
+                        <div class="mx-2 px-4">
+                            <hr>
+                            @if(auth()->user())
+                            <div class="form-group">
+                                <form method="POST" action="{{ route('review.create', [$details->id])}}">
+                                    <input type="hidden" name="nickName" value="{{ auth()->user()->nickName }}">
+                                    @csrf
+
+                                    <label for="Review">Submit review</label>
+                                    <textarea class="form-control" name="content" rows="4" cols="50" /></textarea>
+                                    <div>
+                                        <button type="submit" class="btn btn-outline-success m-2">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <hr>
+                            @endif
+
+                        </div>
                     </div>
-                    @endif
-
-                    @endforeach
-
                 </div>
             </div>
         </div>
-
     </div>
-
-
-</div>
 </div>
 <script>
 </script>
