@@ -8,15 +8,13 @@
     <div class="row" style="margin-right: 0;">
   <div class="col-4">
   <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-    <div class="user-info" style="padding: 10px;">
-      <h5>You are logged in as</h4>
+      <h5>You are logged in as</h5>
       <h6>{{ Auth::user()->firstName }} {{ Auth::user()->lastName }}</h5>
-    </div>
   </div>
     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-      <a class="nav-link active" id="v-pills-dashboard-tab" data-toggle="pill" href="#v-pills-dashboard" role="tab" aria-controls="v-pills-dashboard" aria-selected="true">Dashboard</a>
+      <a class="nav-link active " id="v-pills-dashboard-tab" data-toggle="pill" href="#v-pills-dashboard" role="tab" aria-controls="v-pills-dashboard" aria-selected="true">Dashboard</a>
       <a class="nav-link" id="v-pills-users-tab" data-toggle="pill" href="#v-pills-users" role="tab" aria-controls="v-pills-users" aria-selected="false">Users</a>
-      <a class="nav-link" id="v-pills-reviews-tab" data-toggle="pill" href="#v-pills-reviews" role="tab" aria-controls="v-pills-reviws" aria-selected="false">Reviews</a>
+      <a class="nav-link" id="v-pills-reviews-tab" data-toggle="pill" href="#v-pills-reviews" role="tab" aria-controls="v-pills-reviws" aria-selected="false">Reviews <span class="badge badge-secondary">{{ count($reviews) }}</span></a>
     </div>
   </div>
   <div class="col-8">
@@ -24,20 +22,24 @@
       <div class="tab-pane fade show active" id="v-pills-dashboard" role="tabpanel" aria-labelledby="v-pills-dashboard-tab">
       
       <div class="jumbotron jumbotron-fluid">
+      </div>
             <div class="container dashboard">
                 <h2>Dashboard</h2>
-                <div class="dashboard-overview">Total users:  {{ count($users) }}</div>
-                <div class="dashboard-overview">Total pending reviews:  {{ count($reviews) }}</div>
+                <div class="dashboard-overview">Total users: <span class="badge badge-success">{{ count($users) }} </div>
+                <div class="dashboard-overview">Total pending reviews:  <span class="badge badge-success">{{ count($reviews) }} </span></div>
                 
             </div>
-      </div>
+      
 
       </div>
       <div class="tab-pane fade" id="v-pills-users" role="tabpanel" aria-labelledby="v-pills-users-tab">
       
+      <div class="header-users">
       <h2>Overview of users</h2>
       <p>You can delete users from Dimb here</p>
+</div>
 
+      <div class="card">
       <div class="table-responsive">
         <table class="table">
             <thead>
@@ -61,9 +63,7 @@
                     <td>{{$user->role}}</td>
                     <td>
 
-                    <button style="display: inline-block" class="btn btn-primary btn-sm" type="submit" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                    ✎
-                    </button>
+                    <button style="display: inline-block" class="btn btn-primary btn-sm" type="submit" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">✎</button>
                     
                     <form method="POST" action="{{ route('users.delete', [$user->id])}}" style="display: inline-block">
                         {{ csrf_field() }}
@@ -77,7 +77,7 @@
                             {{ csrf_field() }}
                             {{ method_field('PUT') }} 
 
-                            <div class="input-group" style="margin: 5px;">
+                            <div class="input-group">
                               <div class="input-group-prepend">
                                 <span class="input-group-text">Fullname:</span>
                               </div>
@@ -85,7 +85,7 @@
                                 <input type="text" aria-label="Last name" name="lastName" class="form-control" placeholder="{{ $user->lastName }}" required>
                             </div>
 
-                            <div class="input-group" style="margin: 5px;">
+                            <div class="input-group">
                               <div class="input-group-prepend">
                                 <span class="input-group-text">Email:</span>
                               </div>
@@ -94,7 +94,7 @@
 
                             @if (auth()->user()->role == 2)
 
-                            <div class="input-group" style="margin: 5px;">
+                            <div class="input-group">
                               <div class="input-group-prepend">
                                 <span class="input-group-text">Role:</span>
                               </div>
@@ -103,7 +103,7 @@
                                 
                             @endif
 
-                        <button class="btn btn-danger btn-sm" style="float: right;">Submit changes</button>
+                        <button class="btn btn-success btn-sm" style="float: right;">Submit changes</button>
 
 
 
@@ -117,14 +117,18 @@
             </tbody>
         </table>
     </div>
+</div>
 
     </div>
     
     <div class="tab-pane fade" id="v-pills-reviews" role="tabpanel" aria-labelledby="v-pills-reviews-tab">
       
+    <div class="header-reviews">
       <h2>Overview of reviews</h2>
       <p>You can approve reviews here</p>
+</div>
 
+      <div class="card">
       <div class="table-responsive">
       <table class="table table-bordered">
   <thead>
@@ -162,6 +166,7 @@
   </tbody>
 </table>
       </div>
+</div>
       </div>
       
     </div>

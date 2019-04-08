@@ -6,18 +6,109 @@
 
 .col-8 {
     padding-right: 0;
+    padding-left: 0;
+    border-radius: .25rem;
+    background-color: rgb(233, 233, 233);
+}
+
+.col-4 {
+    padding-right: 0;
+    padding-left: 0;
+    border-radius: .25rem;
+    background-color: #505050;
+    min-height: 800px;
 }
 
 h5 {
-    padding: 10px;
-    background: #33a563e3;
+    color: white;
+    background-color: #33a563e3;
+    padding: 5px;
+    text-align: center;
+    margin: 0;
+    font-weight: bold;
 }
 
+h6 {
+    color: white;
+    background-color: #33a563e3;
+    padding: 5px;
+    text-align: center;
+    margin: 0;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    background-color: #397954e3;
+}
+
+a {
+    color: #4cca81e3;
+}
+
+.nav-pills .nav-link {
+    padding: 10px 10px 10px 30px;
+}
+
+.jumbotron {
+    background-image: url("../movies.jpg");
+    height: 800px; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-size: cover;
+    filter: blur(1px);
+    margin: 0;
+}
+
+.dashboard {
+  background-color: rgb(0,0,0);
+  background-color: rgba(0, 0, 0, 0.486);
+  color: #c5d8cde3;
+  font-weight: bold;
+  border: 2px solid #3b5044e3;
+  border-radius: 5px;
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 80%;
+  padding: 20px;
+  text-align: center;
+}
+
+h2 {
+    color: #397954e3;
+    font-weight: bold;
+}
+
+p {
+    color: #4cca81e3;
+}
+
+.card {
+    margin: 15px;
+}
+
+.header-users, .header-reviews {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 15px;
+}
+
+.card-body {
+    margin: 15px;
+    width: 300px;
+}
+
+.input-group-text {
+    margin-bottom: 10px;
+}
 
 @media (min-width: 320px) and (max-width: 480px) {
   
     h2 {
-        font-size: 20px;
+        font-size: 24px;
     }
 
     .row {
@@ -31,10 +122,21 @@ h5 {
 
     .col-4 {
         max-width: 100%;
+        padding-right: 0;
+        padding-left: 0;
+        min-height: 100%;
     }
 
     .col-8 {
         max-width: 100%;
+        padding-right: 0;
+        padding-left: 0;
+       
+    }
+
+    .card {
+        margin: 15px 15px 15px 30px;
     }
     
+
   }
