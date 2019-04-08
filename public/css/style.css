@@ -13,15 +13,13 @@
     }
 }
 
-/*@media (min-width: 320px) and (max-width: 480px */
-
 
 .media {
     display: flex;
     flex-direction: column;}
 
 #carousel-2, #carousel-1 {
-    height:60vh !important;
+    height:58vh !important;
     width:100vw !important;
     background-attachment: fixed !important;
     background-position: center !important;

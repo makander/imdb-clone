@@ -3,19 +3,28 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('css/details.css') }}">
 
 <div class="media">
-    <div class="background"
+    <div class="background p-2 d-none d-md-block d-xl-non py-5"
         style="background-image: url('https://image.tmdb.org/t/p/original{{ $details->backdrop_path}}');">
     </div>
 
-    <div class="container">
+    <div class="container my-4">
         <div class="d-flex justify-content-center">
+
             <div class="d-flex flex-row">
-                <div class="p-2">
-                    <img src="http://image.tmdb.org/t/p/w500//{{$details->poster_path}}" class="shadow-lg" alt="...">
+                <div id="poster-desktop" class="p-2 d-none d-md-block d-xl-non">
+                    <img src="http://image.tmdb.org/t/p/w342/{{$details->poster_path}}" class="shadow-lg" alt="...">
                 </div>
+
                 <div>
+
+                    <div id="poster-mobile" class="pb-4 d-block d-sm-none justify-content-center">
+                        <img src="http://image.tmdb.org/t/p/w185/{{$details->poster_path}}"
+                            class="shadow-lg mx-auto d-block" alt="...">
+                    </div>
+
                     <div class="mx-2 px-4">
-                        <h1 class="display-4">{{$details->title}}</h1>
+                        <h2 class="d-block d-sm-none">{{$details->title}}</h2>
+                        <h1 class="display-4 d-none d-md-block d-xl-non">{{$details->title}}</h1>
                         <p> Release Date: {{ $details->release_date}} </p>
                         <p id="summary"> {{$details->overview}}</p>
                         <p>Rating: {{ $details->vote_average}}</p>
@@ -46,8 +55,8 @@
 
                     <div class="mx-2 p-4">
 
-                        <h1>Reviews</h1>
-
+                        <h1 class="d-none d-md-block d-xl-non">Reviews</h1>
+                        <h3 class="d-block d-sm-none">Reviews</h3>
                         @foreach ($reviews as $review)
 
                         <div class="reivew-container">

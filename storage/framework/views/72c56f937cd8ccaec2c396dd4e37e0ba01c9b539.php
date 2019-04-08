@@ -3,19 +3,28 @@
 <link rel="stylesheet" type="text/css" href="<?php echo e(asset('css/details.css')); ?>">
 
 <div class="media">
-    <div class="background"
+    <div class="background p-2 d-none d-md-block d-xl-non py-5"
         style="background-image: url('https://image.tmdb.org/t/p/original<?php echo e($details->backdrop_path); ?>');">
     </div>
 
-    <div class="container">
+    <div class="container my-4">
         <div class="d-flex justify-content-center">
+
             <div class="d-flex flex-row">
-                <div class="p-2">
-                    <img src="http://image.tmdb.org/t/p/w500//<?php echo e($details->poster_path); ?>" class="shadow-lg" alt="...">
+                <div id="poster-desktop" class="p-2 d-none d-md-block d-xl-non">
+                    <img src="http://image.tmdb.org/t/p/w342/<?php echo e($details->poster_path); ?>" class="shadow-lg" alt="...">
                 </div>
+
                 <div>
+
+                    <div id="poster-mobile" class="pb-4 d-block d-sm-none justify-content-center">
+                        <img src="http://image.tmdb.org/t/p/w185/<?php echo e($details->poster_path); ?>"
+                            class="shadow-lg mx-auto d-block" alt="...">
+                    </div>
+
                     <div class="mx-2 px-4">
-                        <h1 class="display-4"><?php echo e($details->title); ?></h1>
+                        <h2 class="d-block d-sm-none"><?php echo e($details->title); ?></h2>
+                        <h1 class="display-4 d-none d-md-block d-xl-non"><?php echo e($details->title); ?></h1>
                         <p> Release Date: <?php echo e($details->release_date); ?> </p>
                         <p id="summary"> <?php echo e($details->overview); ?></p>
                         <p>Rating: <?php echo e($details->vote_average); ?></p>
@@ -46,8 +55,8 @@
 
                     <div class="mx-2 p-4">
 
-                        <h1>Reviews</h1>
-
+                        <h1 class="d-none d-md-block d-xl-non">Reviews</h1>
+                        <h3 class="d-block d-sm-none">Reviews</h3>
                         <?php $__currentLoopData = $reviews; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $review): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
                         <div class="reivew-container">

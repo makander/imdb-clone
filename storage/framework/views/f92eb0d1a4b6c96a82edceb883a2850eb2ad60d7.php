@@ -7,7 +7,8 @@
     <div id="carousel" class="carousel slide" data-ride="carousel">
         <div class="carousel-item active">
             <div id="carousel-1" style="
-        background-image: url('https://image.tmdb.org/t/p/original/<?php echo e($movies[1]->backdrop_path); ?>');"></div>
+        background-image: url('https://image.tmdb.org/t/p/original/<?php echo e($movies[1]->backdrop_path); ?>');">
+            </div>
         </div>
         <div class="carousel-item">
             <div class="media">
