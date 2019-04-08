@@ -7,8 +7,24 @@
 }
 
 
-@media (max-width:800px) {
+@media (min-width: 320px) and (max-width: 480px) {
     #carousel {
         display:none !important;
     }
+}
+
+/*@media (min-width: 320px) and (max-width: 480px */
+
+
+.media {
+    display: flex;
+    flex-direction: column;}
+
+#carousel-2, #carousel-1 {
+    height:60vh !important;
+    width:100vw !important;
+    background-attachment: fixed !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
 }
