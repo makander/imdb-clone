@@ -128,25 +128,25 @@
                         </div>
 
                         @endforeach
+                        <div class="mx-2 px-4">
+                            <hr>
+                            @if(auth()->user())
+                            <div class="form-group">
+                                <form method="POST" action="{{ route('review.create', [$details->id])}}">
+                                    <input type="hidden" name="nickName" value="{{ auth()->user()->nickName }}">
+                                    @csrf
 
-                        <hr>
-                        @if(auth()->user())
-                        <div class="form-group">
-                            <form method="POST" action="{{ route('review.create', [$details->id])}}">
-                                <input type="hidden" name="nickName" value="{{ auth()->user()->nickName }}">
-                                @csrf
+                                    <label for="Review">Submit review</label>
+                                    <textarea class="form-control" name="content" rows="4" cols="50" /></textarea>
+                                    <div>
+                                        <button type="submit" class="btn btn-outline-success m-2">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <hr>
+                            @endif
 
-                                <label for="Review">Submit review</label>
-                                <textarea class="form-control" name="content" rows="4" cols="50" /></textarea>
-                                <div>
-                                    <button type="submit" class="btn btn-outline-success m-2">Submit</button>
-                                </div>
-                            </form>
                         </div>
-                        <hr>
-                        @endif
-
-
                     </div>
                 </div>
             </div>

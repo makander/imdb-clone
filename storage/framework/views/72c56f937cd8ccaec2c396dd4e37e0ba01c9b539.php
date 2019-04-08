@@ -131,25 +131,25 @@
                         </div>
 
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        <div class="mx-2 px-4">
+                            <hr>
+                            <?php if(auth()->user()): ?>
+                            <div class="form-group">
+                                <form method="POST" action="<?php echo e(route('review.create', [$details->id])); ?>">
+                                    <input type="hidden" name="nickName" value="<?php echo e(auth()->user()->nickName); ?>">
+                                    <?php echo csrf_field(); ?>
 
-                        <hr>
-                        <?php if(auth()->user()): ?>
-                        <div class="form-group">
-                            <form method="POST" action="<?php echo e(route('review.create', [$details->id])); ?>">
-                                <input type="hidden" name="nickName" value="<?php echo e(auth()->user()->nickName); ?>">
-                                <?php echo csrf_field(); ?>
+                                    <label for="Review">Submit review</label>
+                                    <textarea class="form-control" name="content" rows="4" cols="50" /></textarea>
+                                    <div>
+                                        <button type="submit" class="btn btn-outline-success m-2">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <hr>
+                            <?php endif; ?>
 
-                                <label for="Review">Submit review</label>
-                                <textarea class="form-control" name="content" rows="4" cols="50" /></textarea>
-                                <div>
-                                    <button type="submit" class="btn btn-outline-success m-2">Submit</button>
-                                </div>
-                            </form>
                         </div>
-                        <hr>
-                        <?php endif; ?>
-
-
                     </div>
                 </div>
             </div>
