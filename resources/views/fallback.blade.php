@@ -1,3 +1,4 @@
+@extends('layouts.app')
 @section('content')
 
 <link rel="stylesheet" type="text/css" href="{{ asset('css/fallback.css') }}">
@@ -8,7 +9,6 @@
     </div>
 
 </div>
-<h1>Something went wrong</h1>
-<h3><a href="/">take me back to diMb.. </a></h3>
-
+<h1>Something went wrong..</h1>
+@endsection
 
