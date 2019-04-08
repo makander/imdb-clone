@@ -4,43 +4,27 @@
 
 
 <div>
-    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+    <div id="carousel" class="carousel slide d-none d-md-block d-xl-non" data-ride="carousel">
         <div class="carousel-item active">
-            <div style="
-        background-image: url('https://image.tmdb.org/t/p/original/<?php echo e($movies[1]->backdrop_path); ?>');
-        height:60vh;
-        width:100vw;
-        background-attachment: fixed;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;"></div>
-        </div>
-        <div class="carousel-item">
-            <div class="media" style="display:flex;flex-direction:column;">
-                <div style="
-        background-image: url('https://image.tmdb.org/t/p/original/<?php echo e($movies[0]->backdrop_path); ?>');
-        height:60vh;
-        width:100vw;
-        background-attachment: fixed;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;"></div>
+            <div id="carousel-1" style="
+        background-image: url('https://image.tmdb.org/t/p/original/<?php echo e($movies[1]->backdrop_path); ?>');">
             </div>
         </div>
         <div class="carousel-item">
-            <div class="media" style="display:flex;flex-direction:column;">
-                <div style="
-        background-image: url('https://image.tmdb.org/t/p/original/<?php echo e($movies[2]->backdrop_path); ?>');
-        height:60vh;
-        width:100vw;
-        background-attachment: fixed;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;"></div>
+            <div class="media">
+                <div id="carousel-2" style="
+        background-image: url('https://image.tmdb.org/t/p/original/<?php echo e($movies[0]->backdrop_path); ?>');
+        "></div>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="media">
+                <div id="carousel-2" style="
+        background-image: url('https://image.tmdb.org/t/p/original/<?php echo e($movies[2]->backdrop_path); ?>');">
+                </div>
             </div>
         </div>
     </div>
-
 
 
 
@@ -54,8 +38,8 @@
             <div class="card-body">
                 <h5 class="card-title">
                     <a href="/movies/<?php echo e($match->id); ?>">
-                        <b><?php echo e($match->title); ?></b> </h5>
-                <p>(<?php echo e($match->release_date); ?>)</a>
+                        <b><?php echo e($match->title); ?></b> </h5></a>
+                <p>(<?php echo e($match->release_date); ?>)
                 </p>
             </div>
         </div>

@@ -64,6 +64,16 @@
                     @endif
 
 
+
+
+
+
+                    {{dd($details)}}
+
+
+
+
+
                     <div class="mx-2 px-4 pt-4">
                         <h2 class="d-none d-md-block d-xl-non">Reviews</h2>
                         <h4 class="d-block d-sm-none">Reviews</h4>
