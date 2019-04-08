@@ -56,7 +56,7 @@
 
                             <label class="col-md-4 control-label" for="watchlists">Add to watchlist</label>
                             <div class="col-md-4">
-                                <select id="" name="list_id" class="form-control p-3">
+                                <select id="" name="list_id" class="form-control">
                                     @foreach ($watchlists as $watchlist)
                                     <option value="{{ $watchlist->id }}">{{ $watchlist->list_name }} </option>
                                     @endforeach

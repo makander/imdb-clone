@@ -56,7 +56,7 @@
 
                             <label class="col-md-4 control-label" for="watchlists">Add to watchlist</label>
                             <div class="col-md-4">
-                                <select id="" name="list_id" class="form-control p-3">
+                                <select id="" name="list_id" class="form-control">
                                     <?php $__currentLoopData = $watchlists; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $watchlist): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <option value="<?php echo e($watchlist->id); ?>"><?php echo e($watchlist->list_name); ?> </option>
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
