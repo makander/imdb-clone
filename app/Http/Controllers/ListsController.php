@@ -17,15 +17,21 @@ class ListsController extends Controller
 
     public function show()
     {
-        $userId = auth()->user()->id;
-        $lists = Lists::where("list_owner", "=", $userId)->get();
-        $listOwners = $lists[0]->id;
-        $moviesInList = MovieList::where("list_id", "=", $listOwners)->get();
-        return view('lists', [
-            'lists' => $lists,
-            'moviesInList' => $moviesInList
-            ]
-        );
+        if (auth()->user()) {
+            $userId = auth()->user()->id;
+            $lists = Lists::where("list_owner", "=", $userId)->get();
+            $listOwners = $lists[0]->id;
+            $moviesInList = MovieList::where("list_id", "=", $listOwners)->get();
+            // $numberOfLists = $moviesInList->id;
+            // dd($moviesInList);
+            return view('lists', [
+                'lists' => $lists,
+                'moviesInList' => $moviesInList    
+                ]
+            );
+        } else {
+            return redirect('login');
+        }
     }
 
     public function store(Request $request)

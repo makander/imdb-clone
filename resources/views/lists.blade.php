@@ -66,11 +66,11 @@
     </form> 
 
     <ul class="container xcontainer">
-        @foreach ($lists as $key=>$list)
-        <li class="card ml-5 mt-3 bg-dark xcard shadow" style="">
+        @foreach ($lists as $list)
+        <li class="card ml-5 mt-3 bg-dark xcard shadow">
         <a href="/movielist/{{$list->id}}">
             <img class="card-img-top" style="
-            background-image: url('https://image.tmdb.org/t/p/original/{{$moviesInList[$key]->movie_pic}}');
+            background-image: url('https://image.tmdb.org/t/p/original/{{$moviesInList[0]->movie_pic}}');
             height:35vh;
             background-position: center;
             background-size: cover;
