@@ -6,13 +6,13 @@
     background-size: cover;
 }
 
-
+/* 
 @media (min-width: 320px) and (max-width: 480px) {
     #carousel {
         display:none !important;
     }
 }
-
+ */
 
 .media {
     display: flex;
