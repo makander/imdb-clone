@@ -25,9 +25,26 @@
                     <div class="mx-2 px-4">
                         <h2 class="d-block d-sm-none">{{$details->title}}</h2>
                         <h1 class="display-4 d-none d-md-block d-xl-non">{{$details->title}}</h1>
-                        <p> Release Date: {{ $details->release_date}} </p>
-                        <p id="summary"> {{$details->overview}}</p>
+
+                        <div class="py-2">
+                            <p class="d-inline font-weight-bold"> Release Date: </p>
+                            <p class="d-inline">{{ $details->release_date}} </p>
+                        </div>
+
+
+                        <div>
+                            <p class=" d-inline font-weight-bold">Genres:</p>
+                            @foreach ($details->genres as $key => $value )
+                            <p class="d-inline">{{$value->name}}, </p>
+                            @endforeach
+                        </div>
+
+
+                        <h3 class="pt-4">Summary</h3>
+                        <p class=""> {{$details->overview}}</p>
                         <p>Rating: {{ $details->vote_average}}</p>
+
+
                     </div>
                     @if(auth()->user())
 
@@ -61,7 +78,7 @@
 
                         <div class="reivew-container">
                             <hr>
-                            <p id="review-user"> User: {{$review->nickName}} </p> </br>
+                            <p class="font-weight-bold"> User: {{$review->nickName}} </p> </br>
                             <p>{{$review->content}} </p>
                         </div>
 

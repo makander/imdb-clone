@@ -25,9 +25,26 @@
                     <div class="mx-2 px-4">
                         <h2 class="d-block d-sm-none"><?php echo e($details->title); ?></h2>
                         <h1 class="display-4 d-none d-md-block d-xl-non"><?php echo e($details->title); ?></h1>
-                        <p> Release Date: <?php echo e($details->release_date); ?> </p>
-                        <p id="summary"> <?php echo e($details->overview); ?></p>
+
+                        <div class="py-2">
+                            <p class="d-inline font-weight-bold"> Release Date: </p>
+                            <p class="d-inline"><?php echo e($details->release_date); ?> </p>
+                        </div>
+
+
+                        <div>
+                            <p class=" d-inline font-weight-bold">Genres:</p>
+                            <?php $__currentLoopData = $details->genres; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <p class="d-inline"><?php echo e($value->name); ?>, </p>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        </div>
+
+
+                        <h3 class="pt-4">Summary</h3>
+                        <p class=""> <?php echo e($details->overview); ?></p>
                         <p>Rating: <?php echo e($details->vote_average); ?></p>
+
+
                     </div>
                     <?php if(auth()->user()): ?>
 
@@ -61,7 +78,7 @@
 
                         <div class="reivew-container">
                             <hr>
-                            <p id="review-user"> User: <?php echo e($review->nickName); ?> </p> </br>
+                            <p class="font-weight-bold"> User: <?php echo e($review->nickName); ?> </p> </br>
                             <p><?php echo e($review->content); ?> </p>
                         </div>
 
