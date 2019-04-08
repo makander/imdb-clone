@@ -39,16 +39,12 @@
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </div>
 
-
                         <h3 class="pt-4">Summary</h3>
                         <p class=""> <?php echo e($details->overview); ?></p>
                         <p>Rating: <?php echo e($details->vote_average); ?></p>
 
-
                     </div>
-                    <?php if(auth()->user()): ?>
-
-                    <div class="mx-4 px-4">
+                    <?php if(auth()->user() == true && sizeof($watchlists) > 0): ?> <div class="mx-4 px-4">
                         <form class="form-inline" method="POST" action="<?php echo e(route('movielist.store', [$details->id])); ?>">
                             <?php echo csrf_field(); ?>
                             <input type="hidden" name="movie_title" value="<?php echo e($details->title); ?>">
@@ -66,6 +62,7 @@
                         </form>
                     </div>
                     <?php endif; ?>
+
 
                     <div class="mx-2 px-4 pt-4">
                         <h2 class="d-none d-md-block d-xl-non">Reviews</h2>

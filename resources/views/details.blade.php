@@ -39,16 +39,12 @@
                             @endforeach
                         </div>
 
-
                         <h3 class="pt-4">Summary</h3>
                         <p class=""> {{$details->overview}}</p>
                         <p>Rating: {{ $details->vote_average}}</p>
 
-
                     </div>
-                    @if(auth()->user())
-
-                    <div class="mx-4 px-4">
+                    @if(auth()->user() == true && sizeof($watchlists) > 0) <div class="mx-4 px-4">
                         <form class="form-inline" method="POST" action="{{ route('movielist.store', [$details->id])}}">
                             @csrf
                             <input type="hidden" name="movie_title" value="{{ $details->title }}">
@@ -66,6 +62,7 @@
                         </form>
                     </div>
                     @endif
+
 
                     <div class="mx-2 px-4 pt-4">
                         <h2 class="d-none d-md-block d-xl-non">Reviews</h2>
