@@ -65,22 +65,17 @@
                             </div>
                         </form>
                     </div>
-
                     <?php endif; ?>
 
-
-
-                    <div class="mx-2 p-4">
-
-                        <h1 class="d-none d-md-block d-xl-non">Reviews</h1>
-                        <h3 class="d-block d-sm-none">Reviews</h3>
-                        <?php $__currentLoopData = $reviews; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $review): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-
-                        <div class="reivew-container">
-                            <hr>
-                            <p class="font-weight-bold"> User: <?php echo e($review->nickName); ?> </p> </br>
-                            <p><?php echo e($review->content); ?> </p>
-                        </div>
+                    <div class="mx-2 px-4 pt-4">
+                        <h2 class="d-none d-md-block d-xl-non">Reviews</h2>
+                        <h4 class="d-block d-sm-none">Reviews</h4>
+                    </div>
+                    <?php $__currentLoopData = $reviews; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $review): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <div class="mx-2 px-4">
+                        <hr>
+                        <p class="font-weight-bold"> User: <?php echo e($review->nickName); ?> </p> </br>
+                        <p><?php echo e($review->content); ?> </p>
 
                         <?php if(auth()->user() == true && auth()->user()->id == $review->author_id): ?>
                         <div class="btn-group">
@@ -89,12 +84,12 @@
                                 <?php echo e(csrf_field()); ?> <?php echo e(method_field('DELETE')); ?>
 
 
-                                <button class="btn btn-danger mr-2" type="submit">Delete</button>
+                                <button class="btn btn-outline-danger mr-2" type="submit">Delete</button>
                             </form>
 
                             <div class="form-group">
                                 <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-primary" data-toggle="modal"
+                                <button type="button" class="btn btn-outline-primary" data-toggle="modal"
                                     data-target="#exampleModalCenter">
                                     Edit review
                                 </button>
@@ -134,26 +129,27 @@
                             </div>
                             <?php endif; ?>
                         </div>
+
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                        <div class="mx-2 px-4">
-                            <hr>
-                            <?php if(auth()->user()): ?>
-                            <div class="form-group">
-                                <form method="POST" action="<?php echo e(route('review.create', [$details->id])); ?>">
-                                    <input type="hidden" name="nickName" value="<?php echo e(auth()->user()->nickName); ?>">
-                                    <?php echo csrf_field(); ?>
 
-                                    <label for="Review">Submit review</label>
-                                    <textarea class="form-control" name="content" rows="4" cols="50" /></textarea>
-                                    <div>
-                                        <button type="submit" class="btn btn-outline-success m-2">Submit</button>
-                                    </div>
-                                </form>
-                            </div>
-                            <hr>
-                            <?php endif; ?>
+                        <hr>
+                        <?php if(auth()->user()): ?>
+                        <div class="form-group">
+                            <form method="POST" action="<?php echo e(route('review.create', [$details->id])); ?>">
+                                <input type="hidden" name="nickName" value="<?php echo e(auth()->user()->nickName); ?>">
+                                <?php echo csrf_field(); ?>
 
+                                <label for="Review">Submit review</label>
+                                <textarea class="form-control" name="content" rows="4" cols="50" /></textarea>
+                                <div>
+                                    <button type="submit" class="btn btn-outline-success m-2">Submit</button>
+                                </div>
+                            </form>
                         </div>
+                        <hr>
+                        <?php endif; ?>
+
+
                     </div>
                 </div>
             </div>

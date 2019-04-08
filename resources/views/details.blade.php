@@ -65,22 +65,17 @@
                             </div>
                         </form>
                     </div>
-
                     @endif
 
-
-
-                    <div class="mx-2 p-4">
-
-                        <h1 class="d-none d-md-block d-xl-non">Reviews</h1>
-                        <h3 class="d-block d-sm-none">Reviews</h3>
-                        @foreach ($reviews as $review)
-
-                        <div class="reivew-container">
-                            <hr>
-                            <p class="font-weight-bold"> User: {{$review->nickName}} </p> </br>
-                            <p>{{$review->content}} </p>
-                        </div>
+                    <div class="mx-2 px-4 pt-4">
+                        <h2 class="d-none d-md-block d-xl-non">Reviews</h2>
+                        <h4 class="d-block d-sm-none">Reviews</h4>
+                    </div>
+                    @foreach ($reviews as $review)
+                    <div class="mx-2 px-4">
+                        <hr>
+                        <p class="font-weight-bold"> User: {{$review->nickName}} </p> </br>
+                        <p>{{$review->content}} </p>
 
                         @if(auth()->user() == true && auth()->user()->id == $review->author_id)
                         <div class="btn-group">
@@ -88,12 +83,12 @@
                             <form method="POST" action="{{ route('review.destroy', [$review->id])}}">
                                 {{ csrf_field() }} {{ method_field('DELETE') }}
 
-                                <button class="btn btn-danger mr-2" type="submit">Delete</button>
+                                <button class="btn btn-outline-danger mr-2" type="submit">Delete</button>
                             </form>
 
                             <div class="form-group">
                                 <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-primary" data-toggle="modal"
+                                <button type="button" class="btn btn-outline-primary" data-toggle="modal"
                                     data-target="#exampleModalCenter">
                                     Edit review
                                 </button>
@@ -131,26 +126,27 @@
                             </div>
                             @endif
                         </div>
+
                         @endforeach
-                        <div class="mx-2 px-4">
-                            <hr>
-                            @if(auth()->user())
-                            <div class="form-group">
-                                <form method="POST" action="{{ route('review.create', [$details->id])}}">
-                                    <input type="hidden" name="nickName" value="{{ auth()->user()->nickName }}">
-                                    @csrf
 
-                                    <label for="Review">Submit review</label>
-                                    <textarea class="form-control" name="content" rows="4" cols="50" /></textarea>
-                                    <div>
-                                        <button type="submit" class="btn btn-outline-success m-2">Submit</button>
-                                    </div>
-                                </form>
-                            </div>
-                            <hr>
-                            @endif
+                        <hr>
+                        @if(auth()->user())
+                        <div class="form-group">
+                            <form method="POST" action="{{ route('review.create', [$details->id])}}">
+                                <input type="hidden" name="nickName" value="{{ auth()->user()->nickName }}">
+                                @csrf
 
+                                <label for="Review">Submit review</label>
+                                <textarea class="form-control" name="content" rows="4" cols="50" /></textarea>
+                                <div>
+                                    <button type="submit" class="btn btn-outline-success m-2">Submit</button>
+                                </div>
+                            </form>
                         </div>
+                        <hr>
+                        @endif
+
+
                     </div>
                 </div>
             </div>
