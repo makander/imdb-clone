@@ -44,6 +44,10 @@ a {
     color: #4cca81e3;
 }
 
+a#v-pills-users-tab:hover, a#v-pills-reviews-tab:hover, a#v-pills-dashboard-tab:hover {
+    color: #ffffffe3;
+}
+
 .nav-pills .nav-link {
     padding: 10px 10px 10px 30px;
 }
