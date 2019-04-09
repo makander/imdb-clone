@@ -19,6 +19,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/footer.css') }}" rel="stylesheet">
 </head>
 
 <body style="overflow-x:hidden;">
@@ -46,6 +47,11 @@
                                 <button class=" btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                             </form>
                         </div>
+
+                        <a role="button" class="btn btn-outline-success my-2 my-sm-0 ml-1"
+                            href="{{ url('/advancedsearch') }}">
+                            Advanced search
+                        </a>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -69,12 +75,16 @@
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->name }} <span class="caret"></span>
+                                {{ Auth::user()->firstName }} {{ Auth::user()->lastName }}<span class="caret"></span>
                             </a>
 
 
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                @if ((auth()->user()->role == 1 || auth()->user()->role == 2))
+                                <a class="dropdown-item" href="{{ route('admin') }}">Dashboard</a>
+                                @endif
+
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
@@ -96,6 +106,32 @@
             @yield('content')
         </main>
     </div>
+
+    <footer>
+        <div class="footer-content">
+            <h4>About Dimb</h4>
+            <p>Dimb is an imdbclone school project made by Nils Makander, Astrid Sinabian, Robin Mossberg and Peter
+                Heinum. We are students at Chas Academy in Stockholm, Sweden.</p>
+        </div>
+
+        <div class="footer-links">
+            <h4>Dimb</h4>
+            <ul>
+                <li><a href="{{ route('register') }}">{{ __('Register') }}</a></li>
+                <li><a href="https://www.facebook.se">Facebook</a></li>
+                <li><a href="https://www.linkedin.se">Linked In</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-links">
+            <h4>Movies</h4>
+            <ul>
+                <li><a href="{{ url('/') }}">Top Rated Movies</a></li>
+                <li><a href="#">Top Rated Series</a></li>
+                <li><a href="#">Register</a></li>
+            </ul>
+        </div>
+    </footer>
 </body>
 
 </html>

@@ -1,3 +1,5 @@
+
+
 <?php $__env->startSection('code', '404'); ?>
 <?php $__env->startSection('title', __('Page Not Found')); ?>
 

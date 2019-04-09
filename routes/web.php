@@ -19,6 +19,8 @@ Route::post('/movies/search', 'MovieController@searchMovies')->name('search');
 Route::post('/movielist/search', 'MovieController@searchMovies')->name('search');
 Route::post('/lists/search', 'MovieController@searchMovies')->name('search');
 
+Route::get('/advancedsearch', 'SearchController@index');
+
 
 Route::get('movies/{id}', 'MovieController@show');
 
@@ -31,10 +33,10 @@ Route::get('/movielist/{id}', 'MoviesListController@show')->name('movie.get');
 Route::post('/movielist/{id}', 'MoviesListController@store')->name('movielist.store');
 Route::delete('/movielist/{id}', 'MoviesListController@delete')->name('movielist.delete');
 
-
 Route::post('movies/{id}/review', 'ReviewController@store')->name('review.create');
 Route::delete('movies/{id}', 'ReviewController@destroy')->name('review.destroy');
 Route::get('movies/{id}/updatereview', 'ReviewController@update')->name('review.update');
+
 
 
 //Route::get('series', 'SeriesController@index');
@@ -43,6 +45,12 @@ Route::get('movies/{id}/updatereview', 'ReviewController@update')->name('review.
 Route::post('login', '@index');
 Route::post('profile', '@index');
 Route::post('signup', '@index');
+
+Route::get('admin', 'AdminController@index')->name('admin');
+Route::get('admin/editUser/{id}', 'AdminController@edit')->name('users.edit');
+Route::delete('admin/deleteUser/{id}', 'AdminController@delete')->name('users.delete');
+Route::get('admin/approveReview/{id}', 'AdminController@update')->name('review.approve');
+Route::delete('admin/deleteReview/{id}', 'AdminController@deleteReview')->name('review.delete');
 
 Auth::routes();
 

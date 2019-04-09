@@ -36,6 +36,7 @@ class MovieController extends Controller
         ])
         ;
     }
+
     public function searchTvShows($query)
     {
         $apiKey = "f9948c89015a41a0a70d75d459c92e4f";
@@ -61,7 +62,7 @@ class MovieController extends Controller
             $watchlists = '';
         }
 
-        $reviews = Review::where('movie_id', "=", $id)->get();
+        $reviews = Review::where('movie_id', "=", $id)->where('approved', '=', 1)->get();
 
         return view(
             'details',
