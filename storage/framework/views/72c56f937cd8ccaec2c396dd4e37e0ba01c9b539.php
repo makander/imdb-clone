@@ -63,18 +63,6 @@
                     </div>
                     <?php endif; ?>
 
-
-
-
-
-
-                    <?php echo e(dd($details)); ?>
-
-
-
-
-
-
                     <div class="mx-2 px-4 pt-4">
                         <h2 class="d-none d-md-block d-xl-non">Reviews</h2>
                         <h4 class="d-block d-sm-none">Reviews</h4>
@@ -116,7 +104,18 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body d-flex">
+
                                                 <ul class="list-inline">
+                                                    <?php if($errors->any()): ?>
+                                                    <div class="alert alert-danger">
+                                                        <ul class="list-unstyled text-center">
+                                                            <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                            <li class="list-item"><?php echo e($error); ?></li>
+                                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                        </ul>
+                                                    </div>
+                                                    <?php endif; ?>
+
                                                     <li class="list-inline-item">
                                                         <form method="GET"
                                                             action="<?php echo e(route('review.update', [$review->id])); ?>">
@@ -124,9 +123,12 @@
 
                                                             <?php echo e(method_field('PUT')); ?>
 
-                                                            <textarea name="content" rows="3" cols="40" /></textarea>
-                                                            <button class="btn btn-outline-primary"
-                                                                type="submit">Edit</button>
+                                                            <textarea name="content" rows="3" cols="40"
+                                                                required /></textarea>
+                                                            <div>
+                                                                <button class="btn btn-outline-primary"
+                                                                    type="submit">Edit</button>
+                                                            </div>
                                                         </form>
                                                     </li>
                                                 </ul>
@@ -141,6 +143,15 @@
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         <div class="mx-2 px-4">
                             <hr>
+                            <?php if($errors->any()): ?>
+                            <div class="alert alert-danger">
+                                <ul class="list-unstyled text-center">
+                                    <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <li class="list-item"><?php echo e($error); ?></li>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                </ul>
+                            </div>
+                            <?php endif; ?>
                             <?php if(auth()->user()): ?>
                             <div class="form-group">
                                 <form method="POST" action="<?php echo e(route('review.create', [$details->id])); ?>">

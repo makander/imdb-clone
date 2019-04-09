@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Review;
+use App\Http\Requests\StoreReview;
 
 class ReviewController extends Controller
 {
-    public function store(Request $request, $id)
+    public function store(StoreReview $request, $id)
     {
         $data['content'] = $request->input('content');
         $data['movie_id'] = $id;

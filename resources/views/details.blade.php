@@ -63,17 +63,6 @@
                     </div>
                     @endif
 
-
-
-
-
-
-                    {{dd($details)}}
-
-
-
-
-
                     <div class="mx-2 px-4 pt-4">
                         <h2 class="d-none d-md-block d-xl-non">Reviews</h2>
                         <h4 class="d-block d-sm-none">Reviews</h4>
@@ -114,15 +103,29 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body d-flex">
+
                                                 <ul class="list-inline">
+                                                    @if ($errors->any())
+                                                    <div class="alert alert-danger">
+                                                        <ul class="list-unstyled text-center">
+                                                            @foreach ($errors->all() as $error)
+                                                            <li class="list-item">{{ $error }}</li>
+                                                            @endforeach
+                                                        </ul>
+                                                    </div>
+                                                    @endif
+
                                                     <li class="list-inline-item">
                                                         <form method="GET"
                                                             action="{{ route('review.update', [$review->id])}}">
                                                             {{ csrf_field() }}
                                                             {{ method_field('PUT') }}
-                                                            <textarea name="content" rows="3" cols="40" /></textarea>
-                                                            <button class="btn btn-outline-primary"
-                                                                type="submit">Edit</button>
+                                                            <textarea name="content" rows="3" cols="40"
+                                                                required /></textarea>
+                                                            <div>
+                                                                <button class="btn btn-outline-primary"
+                                                                    type="submit">Edit</button>
+                                                            </div>
                                                         </form>
                                                     </li>
                                                 </ul>
@@ -137,6 +140,15 @@
                         @endforeach
                         <div class="mx-2 px-4">
                             <hr>
+                            @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul class="list-unstyled text-center">
+                                    @foreach ($errors->all() as $error)
+                                    <li class="list-item">{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                            @endif
                             @if(auth()->user())
                             <div class="form-group">
                                 <form method="POST" action="{{ route('review.create', [$details->id])}}">

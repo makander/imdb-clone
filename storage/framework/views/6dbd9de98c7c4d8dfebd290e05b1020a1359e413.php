@@ -5,44 +5,55 @@
 <div class="container">
 
 
-<div>
-    <h1>Lists Overview</h1>
-</div>
+    <div>
+        <h1>Lists Overview</h1>
+    </div>
 
-<form class="form-inline" form method="POST" action="<?php echo e(route('lists.create')); ?>">
-<?php echo csrf_field(); ?>
-  <label class="sr-only" for="inlineFormInputName2">Name</label>
-  <input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" placeholder="Create List" name="list_name">
+    <?php if($errors->any()): ?>
+    <div class="alert alert-danger">
+        <ul>
+            <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <li><?php echo e($error); ?></li>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+        </ul>
+    </div>
+    <?php endif; ?>
 
-  <button type="submit" class="btn btn-primary mb-2">Submit</button>
-</form> 
+    <form class="form-inline" form method="POST" action="<?php echo e(route('lists.create')); ?>">
+        <?php echo csrf_field(); ?>
+        <label class="sr-only" for="inlineFormInputName2">Name</label>
+        <input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" placeholder="Create List"
+            name="list_name">
 
-<ul class="list-unstyled">
-    <?php $__currentLoopData = $lists; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $list): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-    <li class="">
+        <button type="submit" class="btn btn-primary mb-2">Submit</button>
+    </form>
 
-     <a class="btn btn-link" href="/movielist/<?php echo e($list->id); ?>"> <?php echo e($list->list_name); ?></a>
-     
-        <form method="POST" class="form-check form-check-inline" action="<?php echo e(route('lists.destroy', [$list->id])); ?>">
-            <?php echo e(csrf_field()); ?>
+    <ul class="list-unstyled">
+        <?php $__currentLoopData = $lists; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $list): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+        <li class="">
 
-            <?php echo e(method_field('DELETE')); ?> <button type="submit" class="btn btn-primary mb-2">
-                Delete</button>
-        </form>
+            <a class="btn btn-link" href="/movielist/<?php echo e($list->id); ?>"> <?php echo e($list->list_name); ?></a>
 
-        <form method="GET" class="form-check form-check-inline" action="<?php echo e(route('lists.update', [$list->id])); ?>">
-            <?php echo e(csrf_field()); ?>
+            <form method="POST" class="form-check form-check-inline" action="<?php echo e(route('lists.destroy', [$list->id])); ?>">
+                <?php echo e(csrf_field()); ?>
 
-            <?php echo e(method_field('PUT')); ?>
+                <?php echo e(method_field('DELETE')); ?> <button type="submit" class="btn btn-primary mb-2">
+                    Delete</button>
+            </form>
 
-            <input type="text" name="updated_name" placeholder="edit name" class="form-control mb-2 mr-sm-2">
-            <button type="submit" class="btn btn-primary mb-2">Edit</button>
-        </form>
+            <form method="GET" class="form-check form-check-inline" action="<?php echo e(route('lists.update', [$list->id])); ?>">
+                <?php echo e(csrf_field()); ?>
 
-    </li>
+                <?php echo e(method_field('PUT')); ?>
 
-    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-</ul>
+                <input type="text" name="updated_name" placeholder="edit name" class="form-control mb-2 mr-sm-2">
+                <button type="submit" class="btn btn-primary mb-2">Edit</button>
+            </form>
+
+        </li>
+
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+    </ul>
 
 </div>
 
