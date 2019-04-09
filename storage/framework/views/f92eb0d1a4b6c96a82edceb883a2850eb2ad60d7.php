@@ -31,10 +31,10 @@
     <div class="row justify-content-center">
 
         <?php $__currentLoopData = $movies; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $match): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-
-        <div class="card p-2 m-2 text-center shadow" style="width: 16rem;">
-            <img class=" card-img-top" src="http://image.tmdb.org/t/p/w500//<?php echo e($match->poster_path); ?>"
-                alt="Card image cap">
+        <div class="card ml-5 mt-3" style="width: 18rem;">
+            <a href="/movies/<?php echo e($match->id); ?>">
+                <img class="card-img-top" src="http://image.tmdb.org/t/p/w500//<?php echo e($match->poster_path); ?>" alt="Card image cap">
+            </a>
             <div class="card-body">
                 <h5 class="card-title">
                     <a href="/movies/<?php echo e($match->id); ?>">
@@ -47,4 +47,5 @@
     </div>
 </div>
 <?php $__env->stopSection(); ?>
+
 <?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>
