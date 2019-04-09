@@ -2,9 +2,10 @@
 @section('content')
 <link rel="stylesheet" type="text/css" href="{{ asset('css/movielist.css') }}">
 
-<div class="d-flex justify-content-center p-5 m-4">
+
+<div class="row justify-content-center p-4">
     @foreach ($tables as $table)
-    <div class="card ml-5 mt-3 pb-4" style="width: 14rem;">
+    <div class="card m-3 pb-4 shadow" style="width: 14rem;">
         <img class="card-img-top" src="http://image.tmdb.org/t/p/w400//{{$table->movie_pic}}" alt="">
         <div class="card-body">
             <p class="card-text">
@@ -21,8 +22,4 @@
     @endforeach
 </div>
 </div>
-
-
-<script>
-</script>
 @endsection

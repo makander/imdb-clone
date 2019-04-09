@@ -2,7 +2,7 @@
 @section('content')
 <link rel="stylesheet" type="text/css" href="{{ asset('css/details.css') }}">
 
-<div class="media">
+<div class="d-flex flex-wrap">
     <div class="background p-2 d-none d-md-block d-xl-non py-5"
         style="background-image: url('https://image.tmdb.org/t/p/original{{ $details->backdrop_path}}');">
     </div>

@@ -5,7 +5,7 @@
 
 
 
-<div class="background d-none d-md-block d-xl-non pb-5">
+<div class="background d-none d-md-block d-xl-non">
     @if($movieImageArray)
     <div id=" carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
         @foreach($movieImageArray as $key => $movieImg)
@@ -27,45 +27,51 @@
 
         </div>
         @endif
-
     </div>
-    <div>
-        <h1>Watchlists</h1>
-    </div>
-    <div class="container xcontainer pb-5">
+</div>
+<div class="pt-4">
+    <h1>Watchlists</h1>
+</div>
 
 
-        <form class="form-inline" form method="POST" action="{{ route('lists.create')}}">
-            @csrf
-            <div class="xsearch">
-                <label class="sr-only" for="inlineFormInputName2">Name</label>
-                <input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" placeholder="Create List"
-                    name="list_name">
+<div class="d-flex justify-content-center">
+    <form class="form-inline" form method="POST" action="{{ route('lists.create')}}">
+        @csrf
 
-                <button type="submit" class="btn btn-outline-success mb-2">Submit</button>
+        <label class="sr-only" for="inlineFormInputName2">Name</label>
+        <input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" placeholder="Create List"
+            name="list_name">
+        <button type="submit" class="btn btn-outline-success mb-2">Submit</button>
+    </form>
+</div>
 
-            </div>
-        </form>
+<div class="container">
 
-        <ul class="container xcontainer">
+    <ul class="list-inline">
+        @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul class="list-unstyled text-center">
+                @foreach ($errors->all() as $error)
+                <li class="list-item">{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
+
+
+        <div class="d-flex justify-content-center flex-wrap">
             @if($lists)
             @foreach ($lists as $key=>$list)
-            <li class="card ml-5 mt-3 bg-dark xcard shadow">
+            <div class="card m-4 p-2 bg-dark w-auto text-center shadow">
                 <a href="/movielist/{{$list->id}}">
                     @if(in_array($key, $movieImageArray))
-                    <img class="card-img-top" style="
-                background-image: url('https://image.tmdb.org/t/p/original/{{$movieImageArray[$key]}}');
-                height:35vh;
-                background-position: center;
-                background-size: cover;
-                ">
+                    <img class="card-img-top" style=" background-image:
+                        url('http://image.tmdb.org/t/p/w400/{{$movieImageArray[$key]}}'); height:35vh;
+                        background-position: center; background-size: cover; ">
                     @else
-                    <img class="card-img-top" style="
-                    height:35vh;
-                    background-color: #343a40;
-                    ">
+                    <img class="card-img-top" style=" height:35vh; background-color: #343a40; ">
                     @endif
-                    <div class="container bg-dark">
+                    <div class=" container bg-dark pb-4">
 
                         <a class="btn btn-link xa" href="/movielist/{{$list->id}}"> {{$list->list_name}}</a>
                         <br>
@@ -76,7 +82,7 @@
                             {{ csrf_field() }}
                             {{ method_field('PUT') }}
                             <input type="text" name="updated_name" placeholder="edit name"
-                                class="form-control mb-2 mr-sm-2">
+                                class="form-control mb-2 mr-1">
                             <button type="submit" class="btn btn-outline-success mb-2">Edit</button>
                         </form>
 
@@ -89,15 +95,15 @@
                     </div>
                 </a>
 
-            </li>
+            </div>
 
             @endforeach
             @endif
-        </ul>
+        </div>
 
-    </div>
+</div>
+</div>
 
 
 
-
-    @endsection
+@endsection
