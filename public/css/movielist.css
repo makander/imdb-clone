@@ -1,0 +1,8 @@
+.xcontainer{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card{
+    text-align: center;
+}

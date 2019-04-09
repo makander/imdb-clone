@@ -1,0 +1,25 @@
+.xcontainer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card{
+    text-align: center;
+    width: 30rem;
+}
+
+.xa{
+    font-size: 2rem;
+    color: #38c172;
+}
+
+.xsearch{
+    display: inline;
+}
+
+h1{
+    display: block;
+    text-align: center;
+}
+
