@@ -13,7 +13,13 @@
 
 
 Route::get('/', 'MovieController@index');
+
 Route::post('/search', 'MovieController@searchMovies')->name('search');
+Route::post('/movies/search', 'MovieController@searchMovies')->name('search');
+Route::post('/movielist/search', 'MovieController@searchMovies')->name('search');
+Route::post('/lists/search', 'MovieController@searchMovies')->name('search');
+
+
 Route::get('movies/{id}', 'MovieController@show');
 
 Route::get('/lists', 'ListsController@show')->name('lists');

@@ -18,15 +18,21 @@ class ListsController extends Controller
     public function show()
     {
         if (auth()->user()) {
+
+            $movieImageArray = [];
             $userId = auth()->user()->id;
             $lists = Lists::where("list_owner", "=", $userId)->get();
-            $listOwners = $lists[0]->id;
-            $moviesInList = MovieList::where("list_id", "=", $listOwners)->get();
-            // $numberOfLists = $moviesInList->id;
+            foreach ($lists as $list) {
+                $moviesInList = MovieList::where("list_id", "=", $list->id)->first();
+                if ($moviesInList) {
+                    array_push($movieImageArray, $moviesInList->movie_pic);
+                }
+            }
             // dd($moviesInList);
+            // dd($movieImageArray);
             return view('lists', [
                 'lists' => $lists,
-                'moviesInList' => $moviesInList    
+                'movieImageArray' => $movieImageArray    
                 ]
             );
         } else {

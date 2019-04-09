@@ -12,7 +12,7 @@ class ReviewController extends Controller
         $data['content'] = $request->input('content');
         $data['movie_id'] = $id;
         $data['author_id'] = auth()->user()->id;
-        $data['nick_name'] = $request->input('nick_name');
+        $data['nickName'] = $request->input('nickName');
         Review::create($data);
         return redirect()->back();
     }

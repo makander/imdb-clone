@@ -2,9 +2,6 @@
 @section('content')
 <link rel="stylesheet" type="text/css" href="{{ asset('css/movielist.css') }}" >
 
-
-<button><a href="../lists">< Back to lists</a></button>
-<br>
 <div class="container xcontainer">
     @foreach ($tables as $table)
     <div class="card ml-5 mt-3" style="width: 14rem;">
@@ -18,7 +15,7 @@
                 {{ method_field('DELETE') }} <button type="submit">
                 <a>Delete</a></button>
             </form>
-    </div>
+    </div>   
 @endforeach
 </div>
 

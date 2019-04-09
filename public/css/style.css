@@ -5,3 +5,24 @@
 .d-block {
     background-size: cover;
 }
+
+/* 
+@media (min-width: 320px) and (max-width: 480px) {
+    #carousel {
+        display:none !important;
+    }
+}
+ */
+
+.media {
+    display: flex;
+    flex-direction: column;}
+
+#carousel-2, #carousel-1 {
+    height:58vh !important;
+    width:100vw !important;
+    background-attachment: fixed !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+}
