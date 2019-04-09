@@ -5,9 +5,9 @@
 
 
 
-<div>
+<div class="background d-none d-md-block d-xl-non pb-5">
     @if($movieImageArray)
-    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+    <div id=" carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
         @foreach($movieImageArray as $key => $movieImg)
         @if($key == 0)
         <div class="carousel-item active">
@@ -29,13 +29,10 @@
         @endif
 
     </div>
-
-
-
     <div>
         <h1>Watchlists</h1>
     </div>
-    <div class="container xcontainer">
+    <div class="container xcontainer pb-5">
 
 
         <form class="form-inline" form method="POST" action="{{ route('lists.create')}}">
