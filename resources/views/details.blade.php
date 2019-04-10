@@ -2,7 +2,7 @@
 @section('content')
 <link rel="stylesheet" type="text/css" href="{{ asset('css/details.css') }}">
 
-<div class="media">
+<div class="d-flex flex-wrap">
     <div class="background p-2 d-none d-md-block d-xl-non py-5"
         style="background-image: url('https://image.tmdb.org/t/p/original{{ $details->backdrop_path}}');">
     </div>
@@ -25,13 +25,26 @@
                     <div class="mx-2 px-4">
                         <h2 class="d-block d-sm-none">{{$details->title}}</h2>
                         <h1 class="display-4 d-none d-md-block d-xl-non">{{$details->title}}</h1>
-                        <p> Release Date: {{ $details->release_date}} </p>
-                        <p id="summary"> {{$details->overview}}</p>
-                        <p>Rating: {{ $details->vote_average}}</p>
-                    </div>
-                    @if(auth()->user())
 
-                    <div class="mx-4 px-4">
+                        <div class="py-2">
+                            <p class="d-inline font-weight-bold"> Release Date: </p>
+                            <p class="d-inline">{{ $details->release_date}} </p>
+                        </div>
+
+
+                        <div>
+                            <p class=" d-inline font-weight-bold">Genres:</p>
+                            @foreach ($details->genres as $key => $value )
+                            <p class="d-inline">{{$value->name}}, </p>
+                            @endforeach
+                        </div>
+
+                        <h3 class="pt-4">Summary</h3>
+                        <p class=""> {{$details->overview}}</p>
+                        <p>Rating: {{ $details->vote_average}}</p>
+
+                    </div>
+                    @if(auth()->user() == true && sizeof($watchlists) > 0) <div class="mx-4 px-4">
                         <form class="form-inline" method="POST" action="{{ route('movielist.store', [$details->id])}}">
                             @csrf
                             <input type="hidden" name="movie_title" value="{{ $details->title }}">
@@ -39,7 +52,7 @@
 
                             <label class="col-md-4 control-label" for="watchlists">Add to watchlist</label>
                             <div class="col-md-4">
-                                <select id="" name="list_id" class="form-control p-3">
+                                <select id="" name="list_id" class="form-control">
                                     @foreach ($watchlists as $watchlist)
                                     <option value="{{ $watchlist->id }}">{{ $watchlist->list_name }} </option>
                                     @endforeach
@@ -48,22 +61,17 @@
                             </div>
                         </form>
                     </div>
-
                     @endif
 
-
-
-                    <div class="mx-2 p-4">
-
-                        <h1 class="d-none d-md-block d-xl-non">Reviews</h1>
-                        <h3 class="d-block d-sm-none">Reviews</h3>
-                        @foreach ($reviews as $review)
-
-                        <div class="reivew-container">
-                            <hr>
-                            <p id="review-user"> User: {{$review->nickName}} </p> </br>
-                            <p>{{$review->content}} </p>
-                        </div>
+                    <div class="mx-2 px-4 pt-4">
+                        <h2 class="d-none d-md-block d-xl-non">Reviews</h2>
+                        <h4 class="d-block d-sm-none">Reviews</h4>
+                    </div>
+                    @foreach ($reviews as $review)
+                    <div class="mx-2 px-4">
+                        <hr>
+                        <p class="font-weight-bold"> User: {{$review->nickName}} </p> </br>
+                        <p>{{$review->content}} </p>
 
                         @if(auth()->user() == true && auth()->user()->id == $review->author_id)
                         <div class="btn-group">
@@ -71,12 +79,12 @@
                             <form method="POST" action="{{ route('review.destroy', [$review->id])}}">
                                 {{ csrf_field() }} {{ method_field('DELETE') }}
 
-                                <button class="btn btn-danger mr-2" type="submit">Delete</button>
+                                <button class="btn btn-outline-danger mr-2" type="submit">Delete</button>
                             </form>
 
                             <div class="form-group">
                                 <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-primary" data-toggle="modal"
+                                <button type="button" class="btn btn-outline-primary" data-toggle="modal"
                                     data-target="#exampleModalCenter">
                                     Edit review
                                 </button>
@@ -95,15 +103,29 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body d-flex">
+
                                                 <ul class="list-inline">
+                                                    @if ($errors->any())
+                                                    <div class="alert alert-danger">
+                                                        <ul class="list-unstyled text-center">
+                                                            @foreach ($errors->all() as $error)
+                                                            <li class="list-item">{{ $error }}</li>
+                                                            @endforeach
+                                                        </ul>
+                                                    </div>
+                                                    @endif
+
                                                     <li class="list-inline-item">
                                                         <form method="GET"
                                                             action="{{ route('review.update', [$review->id])}}">
                                                             {{ csrf_field() }}
                                                             {{ method_field('PUT') }}
-                                                            <textarea name="content" rows="3" cols="40" /></textarea>
-                                                            <button class="btn btn-outline-primary"
-                                                                type="submit">Edit</button>
+                                                            <textarea name="content" rows="3" cols="40"
+                                                                required /></textarea>
+                                                            <div>
+                                                                <button class="btn btn-outline-primary"
+                                                                    type="submit">Edit</button>
+                                                            </div>
                                                         </form>
                                                     </li>
                                                 </ul>
@@ -114,9 +136,19 @@
                             </div>
                             @endif
                         </div>
+
                         @endforeach
                         <div class="mx-2 px-4">
                             <hr>
+                            @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul class="list-unstyled text-center">
+                                    @foreach ($errors->all() as $error)
+                                    <li class="list-item">{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                            @endif
                             @if(auth()->user())
                             <div class="form-group">
                                 <form method="POST" action="{{ route('review.create', [$details->id])}}">

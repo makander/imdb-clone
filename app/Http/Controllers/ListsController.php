@@ -4,21 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\StoreList;
+use App\Http\Requests\UpdateList;
 use App\Lists;
 use App\User;
 use App\MovieList;
 
 class ListsController extends Controller
 {
-    public function __construct()
-    {
-        //$this->middleware('auth');
-    }
-
     public function show()
     {
         if (auth()->user()) {
-
             $movieImageArray = [];
             $userId = auth()->user()->id;
             $lists = Lists::where("list_owner", "=", $userId)->get();
@@ -30,11 +26,11 @@ class ListsController extends Controller
                     array_push($movieImageArray, 'nopic');
                 }
             }
-            // dd($moviesInList);
-            // dd($movieImageArray);
-            return view('lists', [
+            return view(
+                'lists',
+                [
                 'lists' => $lists,
-                'movieImageArray' => $movieImageArray    
+                'movieImageArray' => $movieImageArray
                 ]
             );
         } else {
@@ -42,7 +38,7 @@ class ListsController extends Controller
         }
     }
 
-    public function store(Request $request)
+    public function store(StoreList $request)
     {
         $data['list_name'] = $request->input('list_name');
         $data['list_owner'] = auth()->user()->id;
@@ -58,7 +54,7 @@ class ListsController extends Controller
         return redirect()->action('ListsController@show');
     }
 
-    public function update(Request $request, $id)
+    public function update(UpdateList $request, $id)
     {
         $listToUpdate = Lists::find($id);
         $listToUpdate->list_name = $request->input('updated_name');

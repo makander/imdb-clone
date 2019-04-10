@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\StoreList;
+use App\Http\Requests\UpdateList;
 use App\MovieList;
 use App\Lists;
 
@@ -17,10 +19,9 @@ class MoviesListController extends Controller
         } else {
             return redirect('login');
         }
-
     }
 
-    public function store(Request $request, $id)
+    public function store(StoreList $request, $id)
     {
         if ($request->input('list_id') && $id) {
             $data['list_id'] = $request->input('list_id');
@@ -32,9 +33,6 @@ class MoviesListController extends Controller
         } else {
             return redirect()->back();
         }
-        
-
-        
     }
 
     public function delete($id)
