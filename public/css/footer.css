@@ -6,6 +6,7 @@ footer {
     background-color: #343a40;
     color: white;
     margin: 100px 0px 0px 0px;
+    bottom: 0px;
 }
 
 footer h4 {
@@ -44,12 +45,11 @@ footer .footer-content p {
 @media (min-width: 320px) and (max-width: 480px) {
 
     footer {
-        flex-direction: column;
+        flex-direction: row;
     }
 
     .footer-content {
-        text-align: center;
-        width: 100%;
+        display: none;
     }
 
     .footer-links {
@@ -58,9 +58,5 @@ footer .footer-content p {
        
     }
 
-    footer .footer-content p {
-        margin: 0;
-        width: 100%;
-    }
 
 }

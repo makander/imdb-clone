@@ -64,16 +64,17 @@
         <div class="d-flex justify-content-center flex-wrap">
             @if($lists)
             @foreach ($lists as $key=>$list)
-            <div class="card m-4 p-2 bg-dark w-auto text-center shadow">
+            <div class="card m-4 p-2 w-auto text-center shadow-lg">
                 <a href="/movielist/{{$list->id}}">
                     @if($movieImageArray[$key] !== 'nopic')
                     <img class="card-img-top" style=" background-image:
                         url('http://image.tmdb.org/t/p/w400/{{$movieImageArray[$key]}}'); height:35vh;
                         background-position: center; background-size: cover; ">
                     @elseif ($movieImageArray[$key] == 'nopic')
-                    <img class="card-img-top" style=" height:35vh; background-color: #343a40; ">
+                    <img class="card-img-top" style=" height:35vh; background-color: #silver; ">
+                    
                     @endif
-                    <div class=" container bg-dark pb-4">
+                    <div class=" container pb-4">
 
                         <a class="btn btn-link xa" href="/movielist/{{$list->id}}"> {{$list->list_name}}</a>
                         <br>
