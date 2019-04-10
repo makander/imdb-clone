@@ -20,6 +20,7 @@ Route::post('/movielist/search', 'MovieController@searchMovies')->name('search')
 Route::post('/lists/search', 'MovieController@searchMovies')->name('search');
 
 Route::get('/advancedsearch', 'SearchController@index');
+Route::post('/advancedsearch/movies', 'SearchController@advancedsearch')->name('advsearch');
 
 
 Route::get('movies/{id}', 'MovieController@show');

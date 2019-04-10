@@ -3,22 +3,20 @@
 
 @section('content')
 
-<div class="container d-flex flex-wrap p-2 justify-content-center">
+<div class="container d-flex flex-wrap p-2 justify-content-center" style="margin: 40px 0;" >
 
-    <div class="card m-2 d-flex justify-content-center" style="width: 18rem;">
-        <div class="card-body text-center">
-            <h5 class="pr-3">Action</h5>
-            <div>
-                <form method="POST" class="form-check form-check-inline" action="">
+    @foreach($genres as $key => $genre)
+    
+            
+                <form method="POST" value="{{ $key }}" class="form-check form-check-inline" action="{{ route('advsearch', ['genre' => $key])}}">
                     {{ csrf_field() }}
 
-                    <button type="submit" class="btn btn-outline-success mb-2">
-                        Search</button>
-                    <div>
+                    <button class="btn btn-outline-success mb-2"><input style="display: none;" type="submit" name="advancedsearch" value="{{ $key }}">{{ $genre }}</button>
+                    
                 </form>
-            </div>
-        </div>
-    </div>
+
+    @endforeach
+
 </div>
 
     @endsection
