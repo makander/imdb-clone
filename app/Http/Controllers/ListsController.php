@@ -51,6 +51,7 @@ class ListsController extends Controller
     public function destroy($id)
     {
         $listToRemove = Lists::find($id);
+        $moviesInList = MovieList::where("list_id", "=", $id)->delete();
         $listToRemove->delete();
         return redirect()->action('ListsController@show');
     }

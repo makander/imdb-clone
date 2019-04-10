@@ -54,6 +54,7 @@
         @foreach ($lists as $key=>$list)
         <li class="card ml-5 mt-3 bg-dark xcard shadow">
             <a href="/movielist/{{$list->id}}">
+
             @if(in_array($key, $movieImageArray))
                 <img class="card-img-top" style="
                 background-image: url('https://image.tmdb.org/t/p/original/{{$movieImageArray[$key]}}');
@@ -67,11 +68,12 @@
                     background-color: #343a40;
                     ">
             @endif
+            
                 <div class="container bg-dark">
 
                     <a class="btn btn-link xa" href="/movielist/{{$list->id}}"> {{$list->list_name}}</a>
-                    <br>
-                    
+
+                    <br>                    
                     
                     <form method="GET" class="form-check form-check-inline" action="{{ route('lists.update', [$list->id])}}">
                         {{ csrf_field() }}
@@ -86,8 +88,7 @@
                             Delete</button>
                     </form>
                 </div>
-            </a>
-            
+            </a>            
         </li>
 
         @endforeach
