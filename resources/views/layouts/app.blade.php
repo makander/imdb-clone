@@ -47,11 +47,12 @@
                                 <button class=" btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                             </form>
                         </div>
-
+                        <div>
                         <a role="button" class="btn btn-outline-success my-2 my-sm-0 ml-1"
                             href="{{ url('/advancedsearch') }}">
                             Advanced search
                         </a>
+                        <div>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

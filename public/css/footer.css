@@ -45,9 +45,6 @@ footer .footer-content p {
 
 @media (min-width: 320px) and (max-width: 480px) {
 
-    footer {
-        flex-direction: row;
-    }
 
     .footer-content {
         display: none;
@@ -56,6 +53,7 @@ footer .footer-content p {
     .footer-links {
         text-align: center;
         width: 100%;
+        margin: 0;
 
     }
 

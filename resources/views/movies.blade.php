@@ -29,7 +29,7 @@
     <div class="row justify-content-center">
 
         @foreach ($movies as $match)
-        <div class="card ml-5 mt-3 shadow" style="width: 18rem;">
+        <div class="card mx-2 mt-3 shadow" style="width: 18rem;">
             <a href="/movies/{{ $match->id }}">
                 <img class="card-img-top" src="http://image.tmdb.org/t/p/w500//{{$match->poster_path}}"
                     alt="Card image cap">
