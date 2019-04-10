@@ -6,7 +6,10 @@
 <div class="row justify-content-center p-4">
     @foreach ($tables as $table)
     <div class="card m-3 pb-4 shadow" style="width: 14rem;">
-        <img class="card-img-top" src="http://image.tmdb.org/t/p/w400//{{$table->movie_pic}}" alt="">
+        <a href="/movies/{{ $table->movie_id}}">
+            <img class="card-img-top" src="http://image.tmdb.org/t/p/w400//{{$table->movie_pic}}" alt="">
+        </a>
+        
         <div class="card-body">
             <p class="card-text">
                 <a href="../movies/{{$table->movie_id}}"> {{$table->movie_title}}</a>
@@ -20,6 +23,5 @@
         </form>
     </div>
     @endforeach
-</div>
 </div>
 @endsection

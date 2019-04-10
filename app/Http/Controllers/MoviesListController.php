@@ -8,6 +8,7 @@ use App\Http\Requests\StoreList;
 use App\Http\Requests\UpdateList;
 use App\MovieList;
 use App\Lists;
+use App\Movie;
 
 class MoviesListController extends Controller
 {
@@ -23,15 +24,20 @@ class MoviesListController extends Controller
 
     public function store(Request $request, $id)
     {
-        if ($request->input('list_id') && $id) {
-            $data['list_id'] = $request->input('list_id');
-            $data['movie_id'] = $id;
-            $data['movie_title'] = $request->input('movie_title');
-            $data['movie_pic'] = $request->input('movie_pic');
-            MovieList::create($data);
-            return redirect()->back();
+        if (! MovieList::where('movie_id', $id)->where('list_id', $request->list_id)->exists()) {
+
+            if ($request->input('list_id') && $id) {
+                $data['list_id'] = $request->input('list_id');
+                $data['movie_id'] = $id;
+                $data['movie_title'] = $request->input('movie_title');
+                $data['movie_pic'] = $request->input('movie_pic');
+                MovieList::create($data);
+                return redirect()->back();
+            } else {
+                return redirect()->back();
+            } 
         } else {
-            return redirect()->back();
+            return redirect()->back()->withErrors(["You already have this movie in this watchlist..."]);
         }
     }
 

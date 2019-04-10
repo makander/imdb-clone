@@ -110,13 +110,13 @@
 
     <footer>
         <div class="footer-content">
-            <h4>About Dimb</h4>
-            <p>Dimb is an imdbclone school project made by Nils Makander, Astrid Sinabian, Robin Mossberg and Peter
+            <h4>About diMb</h4>
+            <p>diMb is an imdbclone school project made by Nils Makander, Astrid Sinabian, Robin Mossberg and Peter
                 Heinum. We are students at Chas Academy in Stockholm, Sweden.</p>
         </div>
 
         <div class="footer-links">
-            <h4>Dimb</h4>
+            <h4>diMb</h4>
             <ul>
                 <li><a href="{{ route('register') }}">{{ __('Register') }}</a></li>
                 <li><a href="https://www.facebook.se">Facebook</a></li>

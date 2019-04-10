@@ -25,21 +25,25 @@ class MovieController extends Controller
     }
     public function searchMovies(Request $request)
     {
-        $query = $request['query'];
-        $apiKey = "f9948c89015a41a0a70d75d459c92e4f";
-        $query = $request->input('search');
-        $baseUrl =  "http://api.themoviedb.org/3/search/movie?api_key=$apiKey&query=$query";
-        $client = new Client();
-        $result = $client->get("$baseUrl");
-        $movies = json_decode($result->getBody())->results;
-
-        if ($movies == []) {
-            return view('fallback');
+        if ($request->search == null) {
+            return redirect('/');
         } else {
-            return view('search', [
-                'movies' => $movies
-            ])
-            ;
+            $query = $request['query'];
+            $apiKey = "f9948c89015a41a0a70d75d459c92e4f";
+            $query = $request->input('search');
+            $baseUrl =  "http://api.themoviedb.org/3/search/movie?api_key=$apiKey&query=$query";
+            $client = new Client();
+            $result = $client->get("$baseUrl");
+            $movies = json_decode($result->getBody())->results;
+    
+            if ($movies == []) {
+                return view('fallback');
+            } else {
+                return view('search', [
+                    'movies' => $movies
+                    ]
+                );
+            }
         }
     }
 

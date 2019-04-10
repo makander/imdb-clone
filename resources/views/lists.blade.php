@@ -56,6 +56,8 @@
                 @endforeach
             </ul>
         </div>
+    </ul>    
+
         @endif
 
 
@@ -64,12 +66,13 @@
             @foreach ($lists as $key=>$list)
             <div class="card m-4 p-2 w-auto text-center shadow-lg">
                 <a href="/movielist/{{$list->id}}">
-                    @if(in_array($key, $movieImageArray))
+                    @if($movieImageArray[$key] !== 'nopic')
                     <img class="card-img-top" style=" background-image:
                         url('http://image.tmdb.org/t/p/w400/{{$movieImageArray[$key]}}'); height:35vh;
                         background-position: center; background-size: cover; ">
-                    @else
+                    @elseif ($movieImageArray[$key] == 'nopic')
                     <img class="card-img-top" style=" height:35vh; background-color: #silver; ">
+                    
                     @endif
                     <div class=" container pb-4">
 
@@ -102,7 +105,7 @@
         </div>
 
 </div>
-</div>
+
 
 
 
