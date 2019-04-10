@@ -9,7 +9,6 @@ use App\Lists;
 use App\Review;
 use App\User;
 
-
 class MovieController extends Controller
 {
     // $baseImgUrl = 'https://image.tmdb.org/t/p/w300_and_h450_bestv2/nVN7Dt0Xr78gnJepRsRLaLYklbY.jpg';
@@ -57,11 +56,25 @@ class MovieController extends Controller
     public function show($id)
     {
         $apiKey = "f9948c89015a41a0a70d75d459c92e4f";
-        $baseUrl =  "https://api.themoviedb.org/3/movie/$id?api_key=$apiKey&language=en-US";
+        $baseUrl = "https://api.themoviedb.org/3/movie/$id?api_key=$apiKey&language=en-US";
         $detailClient = new Client();
         $result = $detailClient->get("$baseUrl");
         $details = json_decode($result->getBody());
 
+        $castsUrl = "http://api.themoviedb.org/3/movie/$id/casts?api_key=$apiKey";
+        $castsClient = new Client();
+        $castResult  = $castsClient->get("$castsUrl");
+        $cast = json_decode($castResult->getBody());
+
+        $director = [];
+
+        foreach ($cast->crew as $key => $job) {
+            if ($job->job == "Director") {
+                array_push($director, $job->name);
+            }
+        }
+        
+        
         if (auth()->user()) {
             $userId = auth()->user()->id;
             $watchlists = Lists::where("list_owner", "=", $userId)->get();
@@ -74,6 +87,8 @@ class MovieController extends Controller
         return view(
             'details',
             compact(
+                'director',
+                'cast',
                 'details',
                 'reviews',
                 'watchlists'
