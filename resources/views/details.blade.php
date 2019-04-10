@@ -37,11 +37,18 @@
                             @foreach ($details->genres as $key => $value )
                             <p class="d-inline">{{$value->name}}, </p>
                             @endforeach
+                            </br>
+                            <p class=" d-inline font-weight-bold">Cast:</p>
+                            @for ($i = 0; $i < 5; $i++) <p class="d-inline"> {{$cast->cast[$i]->name}}, </p> @endfor
+                                </br>
+                                <p class=" d-inline font-weight-bold">Director:</p>
+                                <p class="d-inline">{{$director[0]}}</p>
                         </div>
-
                         <h3 class="pt-4">Summary</h3>
                         <p class=""> {{$details->overview}}</p>
                         <p>Rating: {{ $details->vote_average}}</p>
+
+
 
                     </div>
                     @if(auth()->user() == true && sizeof($watchlists) > 0) <div class="mx-4 px-4">
