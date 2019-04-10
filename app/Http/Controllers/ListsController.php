@@ -26,6 +26,8 @@ class ListsController extends Controller
                 $moviesInList = MovieList::where("list_id", "=", $list->id)->first();
                 if ($moviesInList) {
                     array_push($movieImageArray, $moviesInList->movie_pic);
+                } else {
+                    array_push($movieImageArray, 'nopic');
                 }
             }
             // dd($moviesInList);

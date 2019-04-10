@@ -9,6 +9,7 @@
     @if($movieImageArray)
     <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
         @foreach($movieImageArray as $key => $movieImg)
+        
             @if($key == 0)
         <div class="carousel-item active">
             @else 
@@ -55,14 +56,14 @@
         <li class="card ml-5 mt-3 bg-dark xcard shadow">
             <a href="/movielist/{{$list->id}}">
 
-            @if(in_array($key, $movieImageArray))
+            @if($movieImageArray[$key] !== 'nopic')
                 <img class="card-img-top" style="
                 background-image: url('https://image.tmdb.org/t/p/original/{{$movieImageArray[$key]}}');
                 height:35vh;
                 background-position: center;
                 background-size: cover;
                 ">
-            @else
+            @elseif ($movieImageArray[$key] == 'nopic')
                 <img class="card-img-top" style="
                     height:35vh;
                     background-color: #343a40;
