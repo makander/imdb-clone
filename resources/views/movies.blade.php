@@ -3,7 +3,7 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
 
 
-<div>
+<div class="pb-3">
     <div id="carousel" class="carousel slide d-none d-md-block d-xl-non" data-ride="carousel">
         <div class="carousel-item active">
             <div id="carousel-1" style="
