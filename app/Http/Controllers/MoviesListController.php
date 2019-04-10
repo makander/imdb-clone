@@ -21,7 +21,7 @@ class MoviesListController extends Controller
         }
     }
 
-    public function store(StoreList $request, $id)
+    public function store(Request $request, $id)
     {
         if ($request->input('list_id') && $id) {
             $data['list_id'] = $request->input('list_id');
